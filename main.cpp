@@ -1,6 +1,6 @@
 #include <iostream>
 
 int main() {
-    std::cout << "Michael va décéder 2" << std::endl;
+    std::cout << "Michael va décéder 3 fois" << std::endl;
     return 0;
 }
