@@ -11,12 +11,12 @@ bool Carte::operator==(const Carte &c) const {
 }
 ostream& operator<<(ostream& lhs, const Carte& rhs)
 {
-    lhs << rhs.MEMBRE  << char(rhs.FAMILLE) ;
+    lhs << rhs.FAMILLE << char(rhs.MEMBRE);
     return lhs;
 }
-const unsigned short Carte::getFamille() const {
+unsigned short Carte::getFamille() const {
     return FAMILLE;
 }
-const unsigned short Carte::getMembre() const {
+unsigned short Carte::getMembre() const {
     return MEMBRE;
 }

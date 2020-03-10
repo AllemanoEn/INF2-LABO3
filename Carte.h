@@ -35,13 +35,13 @@ public:
      * Retourne un unsigned short représentant la famille en ASCII de la carte.
      * @return un unsigned short représentant la famille en ASCII de la carte.
      */
-    const unsigned short getFamille() const;
+    unsigned short getFamille() const;
 
     /**
      * Retourne un unsigned short représentant un membre.
      * @return  un unsigned short représentant un membre.
      */
-    const unsigned short getMembre() const;
+    unsigned short getMembre() const;
 
 private:
     const unsigned short FAMILLE;
