@@ -4,6 +4,19 @@
 
 #include "Carte.h"
 
-bool Carte::operator==(const Carte &c) {
+using namespace std;
+
+bool Carte::operator==(const Carte &c) const {
     return (this->MEMBRE == c.MEMBRE && this->FAMILLE == c.FAMILLE);
+}
+ostream& operator<<(ostream& lhs, const Carte& rhs)
+{
+    lhs << rhs.MEMBRE  << char(rhs.FAMILLE) ;
+    return lhs;
+}
+const unsigned short Carte::getFamille() const {
+    return FAMILLE;
+}
+const unsigned short Carte::getMembre() const {
+    return MEMBRE;
 }
