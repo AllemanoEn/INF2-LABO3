@@ -7,12 +7,14 @@
 #include "Carte.h"
 
 class Joueur {
-    friend void echangerCarte();
 public:
+    Joueur(std::string& nom, std::vector<Carte>& cartes) : strNom(nom), vCarteEnMain(cartes) {};
     void demanderCarte();
     void detecterFamille();
+    friend void echangerCarte();
+
 private:
-    std::string strNom;
+    const std::string strNom;
     std::vector<Carte> vCarteEnMain;
     std::vector<Carte> vFamillesSurTable;
 };
