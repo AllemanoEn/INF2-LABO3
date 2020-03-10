@@ -3,3 +3,7 @@
 //
 
 #include "Carte.h"
+
+Carte bool Carte::operator==(const Carte &c) {
+    return (this->MEMBRE == c.MEMBRE && this->FAMILLE == c.FAMILLE);
+}

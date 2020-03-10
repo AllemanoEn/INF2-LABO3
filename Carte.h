@@ -7,6 +7,13 @@
 
 
 class Carte {
+    //friend ostream& operator<<();
+public:
+    Carte(const unsigned short FAMILLE, const unsigned short MEMBRE) : FAMILLE(FAMILLE), MEMBRE(MEMBRE) {}
+    bool Carte::operator==(const Carte& c);
+private:
+    const unsigned short FAMILLE;
+    const unsigned short MEMBRE;
 
 };
 
