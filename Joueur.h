@@ -10,11 +10,9 @@ class Joueur {
 public:
     Joueur(std::string& nom, std::vector<Carte>& cartes) : strNom(nom), vCarteEnMain(cartes) {};
 
-    bool demanderCarte(const Joueur& j2, Carte* carte);
-    Carte* decideCarte() const;
-
     friend void echangerCarte(Joueur& j1,  Joueur& j2);
-    std::vector<Carte>::iterator chercherCarte(const Carte& carte);
+    Carte decideCarte() const;
+    std::vector<Carte>::iterator demanderCarte(const Carte& carte);
     void detecterFamille();
 
 
