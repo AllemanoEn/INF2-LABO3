@@ -1,8 +1,9 @@
-//
-// Created by jetca on 06.03.2020.
-//
-
 #ifndef INF2_LABO3_PARAMETRE_H
 #define INF2_LABO3_PARAMETRE_H
+
+const unsigned NOMBRE_FAMILLES = 9;
+const unsigned CARTES_PAR_FAMILLE = 4;
+const unsigned NOMBRE_JOUEURS = 4;
+const unsigned CARTES_PAR_JOUEUR = 5;
 
 #endif //INF2_LABO3_PARAMETRE_H
