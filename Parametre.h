@@ -3,10 +3,10 @@
 
 #include <string>
 
-const unsigned NOMBRE_FAMILLES = 9;
-const unsigned CARTES_PAR_FAMILLE = 4;
-const unsigned NOMBRE_JOUEURS = 4;
-const unsigned CARTES_PAR_JOUEUR = 5;
+const unsigned short NOMBRE_FAMILLES = 9;
+const unsigned short CARTES_PAR_FAMILLE = 4;
+const unsigned short NOMBRE_JOUEURS = 4;
+const unsigned short CARTES_PAR_JOUEUR = 5;
 
 const std::string NOM_JOUEURS[] {"Alice",
                                  "Bob",
