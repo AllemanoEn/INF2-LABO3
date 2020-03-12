@@ -8,10 +8,13 @@
 
 class Joueur {
 public:
-    Joueur(std::string nom, std::vector<Carte> cartes) : strNom(nom), vCarteEnMain(cartes) {};
-    void demanderCarte();
+    Joueur(std::string& nom, std::vector<Carte>& cartes) : strNom(nom), vCarteEnMain(cartes) {};
+
+    friend void echangerCarte(Joueur& j1,  Joueur& j2);
+    Carte decideCarte() const;
+    std::vector<Carte>::iterator demanderCarte(const Carte& carte);
     void detecterFamille();
-    friend void echangerCarte();
+
 
 private:
     const std::string strNom;
