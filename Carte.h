@@ -22,7 +22,7 @@ public:
      * @param FAMILLE lettre représentant la famille (nombre ASCii si mit en unsigned short)
      * @param MEMBRE numéro du membre
      */
-    Carte(const unsigned short FAMILLE, const unsigned short MEMBRE) : FAMILLE(FAMILLE), MEMBRE(MEMBRE) {}
+    Carte(unsigned short FAMILLE, unsigned short MEMBRE) : FAMILLE(FAMILLE), MEMBRE(MEMBRE) {}
 
     /**
      * Compare les cartes, avec l'opérateur ==. Retourne vrai si les carte ont le même membre et la même famille
@@ -44,8 +44,8 @@ public:
     unsigned short getMembre() const;
 
 private:
-    const unsigned short FAMILLE;
-    const unsigned short MEMBRE;
+    unsigned short FAMILLE;
+    unsigned short MEMBRE;
 };
 
 
