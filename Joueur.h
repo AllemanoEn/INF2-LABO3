@@ -8,7 +8,7 @@
 
 class Joueur {
 public:
-    Joueur(std::string& nom, std::vector<Carte>& cartes) : strNom(nom), vCarteEnMain(cartes) {};
+    Joueur(std::string nom, std::vector<Carte> cartes) : strNom(nom), vCarteEnMain(cartes) {};
 
     friend void echangerCarte(Joueur& j1,  Joueur& j2);
     Carte decideCarte() const;
