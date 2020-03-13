@@ -79,3 +79,12 @@ void Joueur::detecterFamille() {
     }
 
 }
+
+void Joueur::setvCartEnMain(Carte c) {
+    vCarteEnMain.push_back(c);
+}
+
+void Joueur::piocher(std::vector<Carte>& vTasDePioche) {
+    this->vCarteEnMain.push_back(vTasDePioche.at(0));
+    vTasDePioche.erase(vTasDePioche.begin());
+}

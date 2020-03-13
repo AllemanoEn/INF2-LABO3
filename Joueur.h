@@ -15,6 +15,10 @@ public:
     std::vector<Carte>::iterator demanderCarte(const Carte& carte);
     void detecterFamille();
 
+    //Accesseur pour la main du joueur
+    void setvCartEnMain(Carte c);
+
+    void piocher(std::vector<Carte>& vTasDePioche);
 
 private:
     const std::string strNom;
