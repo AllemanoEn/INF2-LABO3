@@ -2,7 +2,7 @@
 
 using namespace std;
 
-Partie::Partie(unsigned short nbrFamille, unsigned short nbrCarteParFamille, unsigned short nbrJoueurs, unsigned short nbrCarteParJoueurs) {
+Partie::Partie(unsigned short nbrFamille, unsigned short nbrCarteParFamille, unsigned short nbrJoueurs, unsigned short nbrCarteParJoueurs, const string nomJoueurs[]) {
     //Creation du tas de pioche
     unsigned short famille = 65;
     for (unsigned short j = 1; j <= nbrFamille; ++j) {
@@ -13,14 +13,14 @@ Partie::Partie(unsigned short nbrFamille, unsigned short nbrCarteParFamille, uns
     }
 
     //On mélange le jeu de carte
-    vector<Joueur> vJoueurs;
+
 
     //Creation des joueurs
-    for (int i = 0,c = 0; i < nbrJoueurs; ++i,c+=CARTES_PAR_JOUEUR+1) {
-        vJoueurs.push_back(Joueur(NOM_JOUEURS[i],slice(vTasDePioche,c,c+CARTES_PAR_JOUEUR)));
+    for (int i = 0,c = 0; i < nbrJoueurs; ++i,c+=nbrCarteParJoueurs) {
+        vJoueurs.push_back(Joueur(nomJoueurs[i],slice(vTasDePioche,c,c+nbrCarteParJoueurs-1)));
     }
 
     //On enlève les cartes du tas de pioche qui ont été distribuées
-    vTasDePioche.erase(vTasDePioche.begin(),vTasDePioche.begin()+(NOMBRE_JOUEURS*CARTES_PAR_JOUEUR));
+    vTasDePioche.erase(vTasDePioche.begin(),vTasDePioche.begin()+(nbrJoueurs*nbrCarteParJoueurs));
 
 }

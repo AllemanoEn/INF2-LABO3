@@ -2,7 +2,6 @@
 #define INF2_LABO3_PARTIE_H
 
 #include <vector>
-#include <algorithm>
 
 #include "Parametre.h"
 #include "Joueur.h"
@@ -13,7 +12,8 @@ public:
     Partie(unsigned short nbrFamille,
            unsigned short nbrCarteParFamille,
            unsigned short nbrJoueurs,
-           unsigned short nbrCarteParJoueurs);
+           unsigned short nbrCarteParJoueurs,
+           const std::string nomJoueurs[]);
     std::vector<Carte> slice(const std::vector<Carte>& v, int m, int n)
     {
         auto first = v.cbegin() + m;
@@ -24,6 +24,7 @@ public:
     }
 private:
     std::vector<Carte> vTasDePioche;
+    std::vector<Joueur> vJoueurs;
 };
 
 
