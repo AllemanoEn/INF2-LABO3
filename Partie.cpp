@@ -53,7 +53,6 @@ void Partie::jouerPartie() {
 
 }
 
-
 void Partie::familleComplete(const unsigned iFamille){
     vFamilles.at(iFamille - 1) = true;
 }

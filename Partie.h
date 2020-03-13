@@ -3,7 +3,6 @@
 
 #include <vector>
 
-#include "Parametre.h"
 #include "Joueur.h"
 
 
@@ -16,19 +15,9 @@ public:
            unsigned short nbrCarteParJoueurs,
            const std::string nomJoueurs[]);
 
-
-           unsigned short nbrCarteParJoueurs);
-
-    std::vector<Carte> slice(const std::vector<Carte>& v, int m, int n) {
-        auto first = v.cbegin() + m;
-        auto last = v.cbegin() + n + 1;
-    }
+    std::vector<Carte> slice(const std::vector<Carte>& v, int m, int n);
     void familleComplete(const unsigned iFamille);
 
-    // TODO: Fonction piocher
-    // TODO: Fonctions getTour, jouerTour, terminerPartie
-
-    // TODO: Fonctions getTour, jouerTour, jouerPartie
     unsigned int getiNoTour();
     void jouerTour(Joueur j);
     void jouerPartie();
