@@ -21,15 +21,18 @@ public:
     unsigned int getiNoTour();
     void jouerTour(Joueur j);
     void jouerPartie();
+    bool checkFinDePartie();
 
 private:
     std::vector<Carte> vTasDePioche;
     std::vector<Joueur> vJoueurs;
-    unsigned int iNoTour;
-
     std::vector<bool> vFamilles;
 
-    // TODO: Vecteur familles, avec une fonction familleComplete
+    unsigned int iNoTour;
+
+
+
+    // TODO: une fonction familleComplete
 
 };
 

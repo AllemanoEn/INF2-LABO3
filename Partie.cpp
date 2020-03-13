@@ -31,6 +31,10 @@ Partie::Partie(unsigned short nbrFamille, unsigned short nbrCarteParFamille, uns
     //On enlève les cartes du tas de pioche qui ont été distribuées
     vTasDePioche.erase(vTasDePioche.begin(),vTasDePioche.begin()+(nbrJoueurs*nbrCarteParJoueurs));
 
+    //Générer le vecteur vFamilles à false
+    vector<bool> vFam (nbrFamille, false);
+    vFamilles = vFam;
+
 }
 
 std::vector<Carte> Partie::slice(const std::vector<Carte> &v, int m, int n) {
@@ -46,13 +50,29 @@ unsigned int Partie::getiNoTour() {
 }
 
 void Partie::jouerTour(Joueur j) {
-
+    srand (time(NULL));
+    echangerCarte(j,vJoueurs.at(rand()%3));
 }
 
 void Partie::jouerPartie() {
+    do
 
+    for(const auto& j : vJoueurs){
+        jouerTour(j);
+    }
+
+    while (checkFinDePartie());
 }
 
 void Partie::familleComplete(const unsigned iFamille){
     vFamilles.at(iFamille - 1) = true;
+}
+
+bool Partie::checkFinDePartie() {
+    for(const auto& f :vFamilles){
+        if(f==false){
+            return false;
+        }
+    }
+    return true;
 }
