@@ -44,3 +44,11 @@ unsigned int Partie::getiNoTour() {
     return iNoTour;
 }
 
+void Partie::jouerTour(Joueur j) {
+
+}
+
+void Partie::jouerPartie() {
+
+}
+

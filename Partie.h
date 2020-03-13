@@ -17,11 +17,9 @@ public:
     
     std::vector<Carte> slice(const std::vector<Carte>& v, int m, int n);
 
-
-
-    // TODO: Fonctions getTour, jouerTour, jouerPartie
     unsigned int getiNoTour();
-    void jouerTour();
+    void jouerTour(Joueur j);
+    void jouerPartie();
 
 private:
     std::vector<Carte> vTasDePioche;
