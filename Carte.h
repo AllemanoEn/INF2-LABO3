@@ -5,7 +5,8 @@
 #ifndef INF2_LABO3_CARTE_H
 #define INF2_LABO3_CARTE_H
 
-#include "iostream"
+#include <iostream>
+#include <vector>
 
 class Carte {
     /**
