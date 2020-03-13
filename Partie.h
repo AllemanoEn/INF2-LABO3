@@ -14,6 +14,7 @@ public:
            unsigned short nbrJoueurs,
            unsigned short nbrCarteParJoueurs,
            const std::string nomJoueurs[]);
+    
     std::vector<Carte> slice(const std::vector<Carte>& v, int m, int n)
     {
         auto first = v.cbegin() + m;
@@ -22,9 +23,16 @@ public:
         std::vector<Carte> vec(first, last);
         return vec;
     }
+
+    // TODO: Fonction piocher
+    // TODO: Fonctions getTour, jouerTour, terminerPartie
+
 private:
     std::vector<Carte> vTasDePioche;
     std::vector<Joueur> vJoueurs;
+    // TODO: Stocker le no de tour
+    // TODO: Vecteur familles, avec une fonction familleComplete
+
 };
 
 
