@@ -30,7 +30,8 @@ public:
 
     // TODO: Fonctions getTour, jouerTour, jouerPartie
     unsigned int getiNoTour();
-    void jouerTour();
+    void jouerTour(Joueur j);
+    void jouerPartie();
 
 private:
     std::vector<Carte> vTasDePioche;

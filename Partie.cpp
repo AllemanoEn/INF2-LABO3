@@ -45,6 +45,14 @@ unsigned int Partie::getiNoTour() {
     return iNoTour;
 }
 
+void Partie::jouerTour(Joueur j) {
+
+}
+
+void Partie::jouerPartie() {
+
+}
+
 
 void Partie::familleComplete(const unsigned iFamille){
     vFamilles.at(iFamille - 1) = true;
