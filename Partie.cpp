@@ -1,5 +1,9 @@
 #include "Partie.h"
 
+#include <random>
+#include <ctime>
+#include <algorithm>
+
 using namespace std;
 
 Partie::Partie(unsigned short nbrFamille, unsigned short nbrCarteParFamille, unsigned short nbrJoueurs, unsigned short nbrCarteParJoueurs, const string nomJoueurs[]) {
@@ -13,9 +17,12 @@ Partie::Partie(unsigned short nbrFamille, unsigned short nbrCarteParFamille, uns
     }
 
     //On mélange le jeu de carte
+    /*
+    unsigned seed = time(nullptr);
+    shuffle(vTasDePioche.begin(), vTasDePioche.end(), default_random_engine(seed));
+     */
 
-
-    //Creation des joueurs
+    //Creation des joueurs et de leur main
     for (int i = 0,c = 0; i < nbrJoueurs; ++i,c+=nbrCarteParJoueurs) {
         vJoueurs.push_back(Joueur(nomJoueurs[i],slice(vTasDePioche,c,c+nbrCarteParJoueurs-1)));
     }
@@ -24,3 +31,16 @@ Partie::Partie(unsigned short nbrFamille, unsigned short nbrCarteParFamille, uns
     vTasDePioche.erase(vTasDePioche.begin(),vTasDePioche.begin()+(nbrJoueurs*nbrCarteParJoueurs));
 
 }
+
+std::vector<Carte> Partie::slice(const std::vector<Carte> &v, int m, int n) {
+    auto first = v.cbegin() + m;
+    auto last = v.cbegin() + n + 1;
+
+    std::vector<Carte> vec(first, last);
+    return vec;
+}
+
+unsigned int Partie::getiNoTour() {
+    return iNoTour;
+}
+
