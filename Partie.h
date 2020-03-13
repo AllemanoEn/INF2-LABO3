@@ -12,12 +12,21 @@ public:
     Partie(unsigned short nbrFamille,
            unsigned short nbrCarteParFamille,
            unsigned short nbrJoueurs,
+
            unsigned short nbrCarteParJoueurs,
            const std::string nomJoueurs[]);
-    
-    std::vector<Carte> slice(const std::vector<Carte>& v, int m, int n);
 
 
+           unsigned short nbrCarteParJoueurs);
+
+    std::vector<Carte> slice(const std::vector<Carte>& v, int m, int n) {
+        auto first = v.cbegin() + m;
+        auto last = v.cbegin() + n + 1;
+    }
+    void familleComplete(const unsigned iFamille);
+
+    // TODO: Fonction piocher
+    // TODO: Fonctions getTour, jouerTour, terminerPartie
 
     // TODO: Fonctions getTour, jouerTour, jouerPartie
     unsigned int getiNoTour();
@@ -27,6 +36,9 @@ private:
     std::vector<Carte> vTasDePioche;
     std::vector<Joueur> vJoueurs;
     unsigned int iNoTour;
+
+    std::vector<bool> vFamilles;
+
     // TODO: Vecteur familles, avec une fonction familleComplete
 
 };

@@ -7,6 +7,7 @@
 using namespace std;
 
 Partie::Partie(unsigned short nbrFamille, unsigned short nbrCarteParFamille, unsigned short nbrJoueurs, unsigned short nbrCarteParJoueurs, const string nomJoueurs[]) {
+
     //Creation du tas de pioche
     unsigned short famille = 65;
     for (unsigned short j = 1; j <= nbrFamille; ++j) {
@@ -44,3 +45,7 @@ unsigned int Partie::getiNoTour() {
     return iNoTour;
 }
 
+
+void Partie::familleComplete(const unsigned iFamille){
+    vFamilles.at(iFamille - 1) = true;
+}
