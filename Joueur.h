@@ -10,15 +10,18 @@ class Joueur {
 public:
     Joueur(std::string nom, std::vector<Carte> cartes) : strNom(nom), vCarteEnMain(cartes) {};
 
-    friend void echangerCarte(Joueur& j1,  Joueur& j2);
-    Carte decideCarte() const;
+    friend void echangerCarte(Joueur& j1, Joueur& j2, const Carte& carteAEchanger, std::vector<Carte>::iterator carteAutreJoueur);
+    Carte decideCarte(const std::vector<bool>& vFamilles) const;
     std::vector<Carte>::iterator demanderCarte(const Carte& carte);
-    void detecterFamille();
 
     void insererCarteEnMain(Carte& carte);
     void trierCartesEnMain();
-    //Accesseur pour la main du joueur
-    void setvCartEnMain(Carte c);
+
+    void detecterFamille(std::vector<bool>& vFamilles);
+
+    // Accesseurs pour la main du joueur
+    const std::vector<Carte> &getVCarteEnMain() const;
+    const std::string &getStrNom() const;
 
 
     void piocher(std::vector<Carte>& vTasDePioche);
