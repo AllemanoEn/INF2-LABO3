@@ -28,6 +28,9 @@ public:
     void piocher(std::vector<Carte>& vTasDePioche);
     std::vector<Carte> vCarteEnMain;
 
+    friend bool operator==(const Joueur& lhs, const Joueur& rhs){
+        return (lhs.strNom == rhs.strNom) && (lhs.getVCarteEnMain() == rhs.getVCarteEnMain());
+    }
     friend std::ostream &operator<<(std::ostream &lhs, const Joueur &rhs);
 private:
     const std::string strNom;
