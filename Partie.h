@@ -19,6 +19,11 @@ private:
     bool checkFinDePartie();
     unsigned int getiNoTour();
 
+    /// \brief fonction qui retourne un joueur aléatoire qui n'est pas celui passé en paramètre
+    /// \param j joueur à éviter
+    /// \return un joueur aleatoire
+    Joueur joueurAleatoire(Joueur j);
+
     std::vector<Carte> vTasDePioche;
     std::vector<Joueur> vJoueurs;
     std::vector<bool> vFamilles;

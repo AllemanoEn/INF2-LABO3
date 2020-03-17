@@ -51,8 +51,7 @@ void Partie::jouerTour(Joueur j1) {
     Carte carteAEchanger = j1.decideCarte(vFamilles);
 
     // Décide d'un joueur à qui demander
-    srand (time(NULL));
-    Joueur j2 = vJoueurs.at(rand()%3);
+    Joueur j2 = joueurAleatoire(j1);
     vector<Carte> vCartesJoueur2 = j2.getVCarteEnMain();
 
     // Demande la carte à l'autre joueur
@@ -100,4 +99,16 @@ std::vector<Carte> Partie::slice(std::vector<Carte> const &v, int m, int n)
 
     std::vector<Carte> vec(first, last);
     return vec;
+}
+
+Joueur Partie::joueurAleatoire(Joueur j) {
+    srand (static_cast<unsigned int>(time(NULL)));
+    int iRand;
+    
+    do
+        iRand = rand()%3;
+    while(vJoueurs.at(iRand) == j);
+
+    Joueur lej = vJoueurs.at(iRand);
+    return lej;
 }
