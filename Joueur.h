@@ -15,7 +15,7 @@ public:
     Carte decideCarte(std::vector<bool> vFamilles) ;
     std::vector<Carte>::iterator demanderCarte(const Carte& carte) ;
 
-    void insererCarteEnMain(Carte& carte);
+    void insererCarteEnMain(Carte carte);
     void trierCartesEnMain();
 
     void detecterFamille(std::vector<bool>& vFamilles);

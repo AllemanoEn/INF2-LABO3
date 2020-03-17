@@ -11,7 +11,7 @@ Carte Joueur::decideCarte(vector<bool> vFamilles) {
 
 
     // Choisir une famille au hasard
-    int iFamille = random() % NOMBRE_FAMILLES;
+    int iFamille = rand() % NOMBRE_FAMILLES;
 
     // Incrémente la famille jusqu'à trouver une famille qui n'est pas déjà complétée
     while(vFamilles.at(iFamille) == true) {
@@ -20,7 +20,7 @@ Carte Joueur::decideCarte(vector<bool> vFamilles) {
     iFamille++;
 
     // Choisir une carte au hasard
-    unsigned int iMembre = random() % CARTES_PAR_FAMILLE + 65;
+    unsigned int iMembre = rand() % CARTES_PAR_FAMILLE + 65;
 
     // Incrémente la carte jusqu'à trouver une carte qui n'est pas dans la main du joueur
     Carte carteATester (iFamille, iMembre);
@@ -75,20 +75,22 @@ void echangerCarte(Joueur& j1, Joueur& j2, const Carte& carteAEchanger, vector<C
 }
 
 // insère une carte à sa place
-void Joueur::insererCarteEnMain(Carte& carte){
-
+void Joueur::insererCarteEnMain(Carte carte){
+    bool inseree = false;
+    for (int i = 0; i < vCarteEnMain.size(); ++i) {
+        if(carte < this->vCarteEnMain.at(i)){
+            vCarteEnMain.insert(vCarteEnMain.begin()+i, carte);
+            inseree = true;
+            break;
+        }
+    }
+    if(!inseree)
+        vCarteEnMain.push_back(carte);
 }
 
 // Trie les cartes de la main du joueur
 void Joueur::trierCartesEnMain(){
-<<<<<<< Updated upstream
-    //https://fr.wikipedia.org/wiki/Tri_par_insertion
-
-
-=======
-    // https://fr.wikipedia.org/wiki/Tri_par_insertion
     std::sort(vCarteEnMain.begin(), vCarteEnMain.end());
->>>>>>> Stashed changes
 }
 
 
