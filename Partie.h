@@ -4,6 +4,7 @@
 #include <vector>
 
 #include "Joueur.h"
+#include "Parametre.h"
 
 
 class Partie {
@@ -14,8 +15,6 @@ public:
 
            unsigned short nbrCarteParJoueurs,
            const std::string nomJoueurs[]);
-
-    std::vector<Carte> slice(const std::vector<Carte>& v, int m, int n);
 
     unsigned int getiNoTour();
     void jouerTour(Joueur j);
@@ -28,6 +27,7 @@ private:
     std::vector<bool> vFamilles;
 
     unsigned int iNoTour;
+
 };
 
 

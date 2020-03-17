@@ -38,14 +38,6 @@ Partie::Partie(unsigned short nbrFamille, unsigned short nbrCarteParFamille, uns
 
 }
 
-std::vector<Carte> Partie::slice(const std::vector<Carte> &v, int m, int n) {
-    auto first = v.cbegin() + m;
-    auto last = v.cbegin() + n + 1;
-
-    std::vector<Carte> vec(first, last);
-    return vec;
-}
-
 unsigned int Partie::getiNoTour() {
     return iNoTour;
 }

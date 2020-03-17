@@ -66,7 +66,7 @@ void Joueur::insererCarteEnMain(Carte& carte){
 
 // Trie les cartes de la main du joueur
 void Joueur::trierCartesEnMain(){
-    // https://fr.wikipedia.org/wiki/Tri_par_insertion
+    //https://fr.wikipedia.org/wiki/Tri_par_insertion
 
 
 }
@@ -74,6 +74,10 @@ void Joueur::trierCartesEnMain(){
 
 // Détecter si une famille est complète dans sa main et la pose
 void Joueur::detecterFamille(std::vector<bool>& vFamilles) {
+
+    vFamillesSurTable += slice(vCarteEnMain,i,j);
+
+    vFamilles.at(iFamille - 1) = true;
 
     vector<vector<Carte>::iterator> vCartesParFamille;
 /*
