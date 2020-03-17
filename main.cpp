@@ -1,6 +1,5 @@
 #include <iostream>
 #include "Partie.h"
-#include "Parametre.h"
 
 using namespace std;
 

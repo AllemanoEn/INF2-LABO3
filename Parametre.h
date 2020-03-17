@@ -15,10 +15,5 @@ const std::string NOM_JOUEURS[] {"Alice",
                                  "Corona",
                                  "Dickael",
                                  "Henso"};
-/*
-template<typename T>
-std::vector<T> slice(std::vector<T> const &v, int m, int n);
-*/
-
 
 #endif //INF2_LABO3_PARAMETRE_H
