@@ -11,8 +11,8 @@ public:
     Joueur(std::string nom, std::vector<Carte> cartes) : strNom(nom), vCarteEnMain(cartes) {};
 
     friend void echangerCarte(Joueur& j1, Joueur& j2, const Carte& carteAEchanger, std::vector<Carte>::iterator carteAutreJoueur);
-    Carte decideCarte(const std::vector<bool>& vFamilles) const;
-    std::vector<Carte>::iterator demanderCarte(const Carte& carte);
+    Carte decideCarte(std::vector<bool> vFamilles) ;
+    std::vector<Carte>::iterator demanderCarte(const Carte& carte) ;
 
     void insererCarteEnMain(Carte& carte);
     void trierCartesEnMain();
@@ -26,6 +26,7 @@ public:
 
     void piocher(std::vector<Carte>& vTasDePioche);
 
+    friend std::ostream &operator<<(std::ostream &lhs, const Joueur &rhs);
 private:
     const std::string strNom;
     std::vector<Carte> vCarteEnMain;

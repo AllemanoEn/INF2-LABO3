@@ -5,6 +5,11 @@ using namespace std;
 bool Carte::operator==(const Carte &c) const {
     return (this->MEMBRE == c.MEMBRE && this->FAMILLE == c.FAMILLE);
 }
+
+void Carte::setMembre(unsigned short membre) {
+    MEMBRE = membre;
+}
+
 ostream& operator<<(ostream& lhs, const Carte& rhs)
 {
     lhs << rhs.FAMILLE << char(rhs.MEMBRE);

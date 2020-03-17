@@ -2,10 +2,10 @@
 #define INF2_LABO3_PARTIE_H
 
 #include <vector>
+#include <random>
 
 #include "Joueur.h"
 #include "Parametre.h"
-
 
 class Partie {
 public:

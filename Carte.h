@@ -44,6 +44,8 @@ public:
      */
     unsigned short getMembre() const;
 
+    void setMembre(unsigned short membre);
+
 private:
     unsigned short FAMILLE;
     unsigned short MEMBRE;
