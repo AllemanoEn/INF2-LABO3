@@ -5,19 +5,34 @@ using namespace std;
 
 
 // Decide quelle carte demander en fonction de sa main actuelle
-Carte Joueur::decideCarte(const vector<bool>& vFamilles) const{
-    // TODO: Demander une carte qui n'appartient pas à une famille déjà complète
-    // TODO: Ne pas demander plusieurs fois la même carte à un joueur ?
+Carte Joueur::decideCarte(vector<bool> vFamilles) {
     // Partie 1 : Carte random à demander, que le joueur ne possède PAS, et dont la famille n'est pas complète
     // Partie Bonus: Carte selon le nombre de cartes de cette famille dans la main
 
-    // Prendre en compte le cas où le joueur n'a plus de cartes
-    if(vCarteEnMain.empty()){
-        // Demander une carte d'une famille qui n'a pas déjà été complétée
 
+    // Choisir une famille au hasard
+    int iFamille = random() % NOMBRE_FAMILLES;
+
+    // Incrémente la famille jusqu'à trouver une famille qui n'est pas déjà complétée
+    while(vFamilles.at(iFamille) == true) {
+        iFamille = (iFamille + 1)%NOMBRE_FAMILLES;
+    }
+    iFamille++;
+
+    // Choisir une carte au hasard
+    unsigned int iMembre = random() % CARTES_PAR_FAMILLE + 65;
+
+    // Incrémente la carte jusqu'à trouver une carte qui n'est pas dans la main du joueur
+    Carte carteATester (iFamille, iMembre);
+    while(demanderCarte(carteATester) != vCarteEnMain.end()) {
+        iMembre = (iMembre)%CARTES_PAR_FAMILLE + 65;
+
+        carteATester.setMembre(iMembre);
     }
 
-    // Sinon il va compter ses cartes et demander une carte qu'il ne possède pas encore de la famille la plus remplie dans sa main.
+    return carteATester;
+    // Stratégie pour la classe MeilleurJoueur
+    /*// Sinon il va compter ses cartes et demander une carte qu'il ne possède pas encore de la famille la plus remplie dans sa main.
 
     vector<Carte>::iterator meilleurChoix;
     int count = 0;
@@ -36,7 +51,7 @@ Carte Joueur::decideCarte(const vector<bool>& vFamilles) const{
         else {
             count++;
         }
-    }
+    }*/
 
 }
 
@@ -130,4 +145,14 @@ const string &Joueur::getStrNom() const {
 
 const vector<Carte> &Joueur::getVCarteEnMain() const {
     return vCarteEnMain;
+}
+
+ostream& operator<<(ostream& lhs, const Joueur& rhs){
+    lhs << "[ ";
+    for(auto carteEnMain : rhs.vCarteEnMain){
+        lhs << carteEnMain << " ";
+    }
+    lhs << "]" ;
+
+    return lhs;
 }
