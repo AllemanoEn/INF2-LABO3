@@ -13,12 +13,12 @@ public:
 
     std::vector<Carte> slice(std::vector<Carte> const &v, int m, int n);
 
-    unsigned int getiNoTour();
-    void jouerTour(Joueur j);
     void jouerPartie();
-    bool checkFinDePartie();
-
 private:
+    void jouerTour(Joueur j);
+    bool checkFinDePartie();
+    unsigned int getiNoTour();
+
     std::vector<Carte> vTasDePioche;
     std::vector<Joueur> vJoueurs;
     std::vector<bool> vFamilles;
