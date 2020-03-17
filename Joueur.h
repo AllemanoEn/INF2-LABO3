@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include <algorithm>
 
 #include "Carte.h"
 
@@ -25,11 +26,12 @@ public:
 
 
     void piocher(std::vector<Carte>& vTasDePioche);
+    std::vector<Carte> vCarteEnMain;
 
     friend std::ostream &operator<<(std::ostream &lhs, const Joueur &rhs);
 private:
     const std::string strNom;
-    std::vector<Carte> vCarteEnMain;
+
     std::vector<unsigned> vFamillesSurTable;
 };
 
