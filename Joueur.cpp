@@ -81,9 +81,14 @@ void Joueur::insererCarteEnMain(Carte& carte){
 
 // Trie les cartes de la main du joueur
 void Joueur::trierCartesEnMain(){
+<<<<<<< Updated upstream
     //https://fr.wikipedia.org/wiki/Tri_par_insertion
 
 
+=======
+    // https://fr.wikipedia.org/wiki/Tri_par_insertion
+    std::sort(vCarteEnMain.begin(), vCarteEnMain.end());
+>>>>>>> Stashed changes
 }
 
 
