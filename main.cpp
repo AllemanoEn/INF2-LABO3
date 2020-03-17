@@ -6,7 +6,7 @@ using namespace std;
 
 int main() {
 
-    Partie p1(NOMBRE_FAMILLES,CARTES_PAR_FAMILLE,NOMBRE_JOUEURS,CARTES_PAR_JOUEUR,NOM_JOUEURS);
+    Partie p1;
     p1.jouerPartie();
 
     cout << "Final test" << endl;

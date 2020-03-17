@@ -9,12 +9,9 @@
 
 class Partie {
 public:
-    Partie(unsigned short nbrFamille,
-           unsigned short nbrCarteParFamille,
-           unsigned short nbrJoueurs,
+    Partie();
 
-           unsigned short nbrCarteParJoueurs,
-           const std::string nomJoueurs[]);
+    std::vector<Carte> slice(std::vector<Carte> const &v, int m, int n);
 
     unsigned int getiNoTour();
     void jouerTour(Joueur j);

@@ -7,12 +7,12 @@
 
 using namespace std;
 
-Partie::Partie(unsigned short nbrFamille, unsigned short nbrCarteParFamille, unsigned short nbrJoueurs, unsigned short nbrCarteParJoueurs, const string nomJoueurs[]) {
+Partie::Partie() {
 
     // Creation du tas de pioche
     unsigned short famille = 65;
-    for (unsigned short j = 1; j <= nbrFamille; ++j) {
-        for (int i = 0; i < nbrCarteParFamille; ++i) {
+    for (unsigned short j = 1; j <= NOMBRE_FAMILLES; ++j) {
+        for (int i = 0; i < CARTES_PAR_FAMILLE; ++i) {
             vTasDePioche.push_back(Carte(j, famille++));
         }
         famille = 65;
@@ -25,16 +25,19 @@ Partie::Partie(unsigned short nbrFamille, unsigned short nbrCarteParFamille, uns
      */
 
     //Creation des joueurs et de leur main
-    for (int i = 0,c = 0; i < nbrJoueurs; ++i,c+=nbrCarteParJoueurs) {
-        vJoueurs.push_back(Joueur(nomJoueurs[i],slice(vTasDePioche,c,c+nbrCarteParJoueurs-1)));
+    for (int i = 0,c = 0; i < NOMBRE_JOUEURS; ++i,c+=CARTES_PAR_JOUEUR) {
+        vJoueurs.push_back(Joueur(NOM_JOUEURS[i],slice(vTasDePioche,c,c+CARTES_PAR_JOUEUR-1)));
     }
 
     //On enlève les cartes du tas de pioche qui ont été distribuées
-    vTasDePioche.erase(vTasDePioche.begin(),vTasDePioche.begin()+(nbrJoueurs*nbrCarteParJoueurs));
+    vTasDePioche.erase(vTasDePioche.begin(),vTasDePioche.begin()+(NOMBRE_JOUEURS*CARTES_PAR_JOUEUR));
 
     //Générer le vecteur vFamilles à false
-    vector<bool> vFam (nbrFamille, false);
+    vector<bool> vFam (NOMBRE_FAMILLES, false);
     vFamilles = vFam;
+
+    //On définit le premier tour
+    iNoTour = 1;
 
 }
 
@@ -74,6 +77,7 @@ void Partie::jouerPartie() {
 
     for(const auto& j : vJoueurs){
         jouerTour(j);
+        iNoTour++;
     }
 
     while (checkFinDePartie());
@@ -87,4 +91,13 @@ bool Partie::checkFinDePartie() {
         }
     }
     return true;
+}
+
+std::vector<Carte> Partie::slice(std::vector<Carte> const &v, int m, int n)
+{
+    auto first = v.cbegin() + m;
+    auto last = v.cbegin() + n + 1;
+
+    std::vector<Carte> vec(first, last);
+    return vec;
 }
