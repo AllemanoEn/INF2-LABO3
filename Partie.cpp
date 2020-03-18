@@ -84,7 +84,7 @@ void Partie::jouerPartie() {
             iNoTour++;
         }
 
-    } while (!checkFinDePartie());
+    } while (checkFinDePartie());
 }
 
 
