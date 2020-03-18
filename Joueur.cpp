@@ -71,7 +71,7 @@ vector<Carte>::iterator Joueur::rechercherCarte(const Carte &carte) {
 
 void echangerCarte(Joueur& j1, Joueur& j2, const Carte& carteAEchanger) {
     auto carteJ2 = j2.rechercherCarte(carteAEchanger);
-    j1.vCarteEnMain.push_back(carteAEchanger);
+    j1.insererCarteEnMain(carteAEchanger);
     j2.vCarteEnMain.erase(carteJ2);
 }
 
