@@ -36,7 +36,7 @@ public:
 private:
     const std::string strNom;
 
-    std::vector<unsigned> vFamillesSurTable;
+    std::vector<unsigned short> vFamillesSurTable;
 };
 
 

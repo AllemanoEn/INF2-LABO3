@@ -97,7 +97,6 @@ void Joueur::trierCartesEnMain(){
 
 // Détecter si une famille est complète dans sa main et la pose
 void Joueur::detecterFamille(std::vector<bool>& vFamilles) {
-/*
     int iCpt = 0;
     unsigned int i = 0, j = 1;
     for (;i < vCarteEnMain.size()-1; j++) {
@@ -111,35 +110,11 @@ void Joueur::detecterFamille(std::vector<bool>& vFamilles) {
         }
     }
 
-    vFamillesSurTable.insert(vFamillesSurTable.end(),vCarteEnMain.begin()+i,vCarteEnMain.begin()+j);
+    vFamillesSurTable.push_back(vCarteEnMain.at(i).getFamille());
+
+    vFamilles.at(vCarteEnMain.at(i).getFamille()) = true;
 
     vCarteEnMain.erase(vCarteEnMain.begin()+i,vCarteEnMain.begin()+j);
-
-    */
-
-    //vFamilles.at(iFamille - 1) = true;
-/*
-    // Pour chaque famille:
-    for(int iFamille = 1; iFamille <= NOMBRE_FAMILLES; ++iFamille){
-
-        // On compte le nombre de cartes de cette famille que le joueur possède
-        for (auto carte = vCarteEnMain.begin(); carte != vCarteEnMain.end(); ++carte){
-            if (carte->getFamille() == iFamille ){
-                vCartesParFamille.push_back(carte);
-            }
-
-            // Si la famille est complétée
-            if(vCartesParFamille.size() == CARTES_PAR_FAMILLE){
-
-                // Supprimer les cartes de la main
-                for ( auto carteASupprimer : vCartesParFamille)
-                    vCarteEnMain.erase(carteASupprimer);
-
-            }
-        }
-        vCartesParFamille.clear();
-    }*/
-// vFamilles.at(iFamille - 1) = true;
 }
 
 void Joueur::piocher(std::vector<Carte>& vTasDePioche) {
