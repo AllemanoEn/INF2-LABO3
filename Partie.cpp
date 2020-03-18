@@ -55,18 +55,18 @@ void Partie::jouerTour(Joueur j1) {
     vector<Carte> vCartesJoueur2 = j2.getVCarteEnMain();
 
     // Demande la carte à l'autre joueur
-    auto carteAutreJoueur = j2.demanderCarte(carteAEchanger);
+    bool carteAutreJoueur = j2.demanderCarte(carteAEchanger);
     if(DEBUG_MODE) cout << j1.getStrNom() << " demande a " << j2.getStrNom() << " la carte " << carteAEchanger.getFamille() << char(carteAEchanger.getMembre()) << endl;
 
     // Si le joueur 2 possède la carte, faire l'échange et rejouer. Sinon, le joueur 1 pioche une carte.
-    if(carteAutreJoueur != vCartesJoueur2.end()) {
-        echangerCarte(j1, j2, carteAEchanger, carteAutreJoueur);
+    if(carteAutreJoueur) {
+        echangerCarte(j1, j2, carteAEchanger);
         if(DEBUG_MODE) cout << "\tet " << j2.getStrNom() << " donne la carte a " << j1.getStrNom() << endl;
 
         jouerTour(j1);
     }
     else if(!vTasDePioche.empty()){
-        if(DEBUG_MODE) cout << "\tmais " << j2.getStrNom() << "ne l'a pas" << endl;
+        if(DEBUG_MODE) cout << "\tmais " << j2.getStrNom() << " ne l'a pas" << endl;
         j1.piocher(vTasDePioche);
     }
 }

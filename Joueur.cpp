@@ -23,7 +23,7 @@ Carte Joueur::decideCarte(vector<bool> vFamilles) {
 
     // Incrémente la carte jusqu'à trouver une carte qui n'est pas dans la main du joueur
     Carte carteATester (iFamille, iMembre);
-    while(demanderCarte(carteATester) != vCarteEnMain.end()) {
+    while(demanderCarte(carteATester)) {
         iMembre = (iMembre)%CARTES_PAR_FAMILLE + 65;
 
         carteATester.setMembre(iMembre);
@@ -57,7 +57,7 @@ Carte Joueur::decideCarte(vector<bool> vFamilles) {
 
 
 // Recherche une carte dans la main du joueur
-vector<Carte>::iterator Joueur::demanderCarte(const Carte &carte) {
+vector<Carte>::iterator Joueur::rechercherCarte(const Carte &carte) {
 
     auto posCarte = vCarteEnMain.begin();
     for(; posCarte != vCarteEnMain.end(); ++posCarte){
@@ -69,9 +69,10 @@ vector<Carte>::iterator Joueur::demanderCarte(const Carte &carte) {
 }
 
 
-void echangerCarte(Joueur& j1, Joueur& j2, const Carte& carteAEchanger, vector<Carte>::iterator carteAutreJoueur) {
+void echangerCarte(Joueur& j1, Joueur& j2, const Carte& carteAEchanger) {
+    auto carteJ2 = j2.rechercherCarte(carteAEchanger);
     j1.vCarteEnMain.push_back(carteAEchanger);
-    j2.vCarteEnMain.erase(carteAutreJoueur);
+    j2.vCarteEnMain.erase(carteJ2);
 }
 
 // insère une carte à sa place
@@ -162,4 +163,8 @@ ostream& operator<<(ostream& lhs, const Joueur& rhs){
     lhs << "]" ;
 
     return lhs;
+}
+
+bool Joueur::demanderCarte(const Carte &carte) {
+    return !(rechercherCarte(carte) == vCarteEnMain.end());
 }

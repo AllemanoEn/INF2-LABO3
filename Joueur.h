@@ -11,9 +11,10 @@ class Joueur {
 public:
     Joueur(std::string nom, std::vector<Carte> cartes) : strNom(nom), vCarteEnMain(cartes) {};
 
-    friend void echangerCarte(Joueur& j1, Joueur& j2, const Carte& carteAEchanger, std::vector<Carte>::iterator carteAutreJoueur);
+    friend void echangerCarte(Joueur& j1, Joueur& j2, const Carte& carteAEchanger);
     Carte decideCarte(std::vector<bool> vFamilles) ;
-    std::vector<Carte>::iterator demanderCarte(const Carte& carte) ;
+    bool demanderCarte(const Carte& carte) ;
+    std::vector<Carte>::iterator rechercherCarte(const Carte &carte);
 
     void insererCarteEnMain(Carte carte);
     void trierCartesEnMain();
