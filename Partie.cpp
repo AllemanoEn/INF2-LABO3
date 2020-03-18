@@ -62,12 +62,13 @@ void Partie::jouerTour(Joueur j1) {
     if(carteAutreJoueur) {
         echangerCarte(j1, j2, carteAEchanger);
         if(DEBUG_MODE) cout << "\tet " << j2.getStrNom() << " donne la carte a " << j1.getStrNom() << endl;
-
+        j1.detecterFamille(vFamilles);
         jouerTour(j1);
     }
     else if(!vTasDePioche.empty()){
         if(DEBUG_MODE) cout << "\tmais " << j2.getStrNom() << " ne l'a pas" << endl;
         j1.piocher(vTasDePioche);
+        j1.detecterFamille(vFamilles);
     }
 }
 
