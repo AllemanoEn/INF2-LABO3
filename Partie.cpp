@@ -65,10 +65,12 @@ void Partie::jouerTour(Joueur j1) {
         j1.detecterFamille(vFamilles);
         jouerTour(j1);
     }
-    else if(!vTasDePioche.empty()){
+    else {
         if(DEBUG_MODE) cout << "\tmais " << j2.getStrNom() << " ne l'a pas" << endl;
-        j1.piocher(vTasDePioche);
-        j1.detecterFamille(vFamilles);
+        if(!vTasDePioche.empty()){
+            j1.piocher(vTasDePioche);
+            j1.detecterFamille(vFamilles);
+        }
     }
 
 
@@ -77,12 +79,21 @@ void Partie::jouerTour(Joueur j1) {
 void Partie::jouerPartie() {
     do {
 
-        cout << "Tour " << iNoTour << endl;
+        cout << "*** Tour " << iNoTour << " ***" << endl;
+        for (size_t i = 0; i < vJoueurs.size(); ++i) {
+            cout << vJoueurs.at(i).getStrNom() << " : " << vJoueurs.at(i) << endl;
+        }
+        cout  << "Pioche : ";
+        for(auto carteEnMain : vTasDePioche){
+            cout  << carteEnMain << " ";
+        }
+        cout << endl;
 
         for (const auto &j : vJoueurs) {
             jouerTour(j);
-            iNoTour++;
+
         }
+        iNoTour++;
 
     } while (checkFinDePartie());
 }

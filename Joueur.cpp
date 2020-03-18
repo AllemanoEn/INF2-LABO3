@@ -99,15 +99,16 @@ void Joueur::trierCartesEnMain(){
 void Joueur::detecterFamille(std::vector<bool>& vFamilles) {
     unsigned int iCpt = 0,iPos = 0;
 
-    for (unsigned short fam = 65; fam < 65+CARTES_PAR_FAMILLE ; fam++) {
+    for (unsigned short fam = 1; fam <= CARTES_PAR_FAMILLE ; fam++) {
         for (auto c = vCarteEnMain.begin(); c < vCarteEnMain.end(); c++, iPos++) {
             if (c->getFamille() == fam) {
                 iCpt++;
                 if (iCpt == NOMBRE_FAMILLES) {
                     iPos -= (CARTES_PAR_FAMILLE -1);
                     auto pos = vCarteEnMain.begin() + iPos;
-
+                    cout << "Famille complete : " << pos->getFamille();
                     vFamilles.at(vCarteEnMain.at(iPos).getFamille() - 1) = true;
+                    vFamillesSurTable.push_back(pos->getFamille());
                     vCarteEnMain.erase(pos, pos+CARTES_PAR_FAMILLE);
                 }
             }
