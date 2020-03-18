@@ -16,7 +16,7 @@ public:
     void jouerPartie();
     unsigned int getiNoTour();
 private:
-    void jouerTour(Joueur j);
+    void jouerTour(Joueur& j);
     bool checkFinDePartie();
 
     /// \brief fonction qui retourne un joueur aléatoire qui n'est pas celui passé en paramètre

@@ -45,7 +45,7 @@ unsigned int Partie::getiNoTour() {
     return iNoTour;
 }
 
-void Partie::jouerTour(Joueur j1) {
+void Partie::jouerTour(Joueur& j1) {
 
     // Décide d'une carte à échanger
     Carte carteAEchanger = j1.decideCarte(vFamilles);
@@ -76,6 +76,7 @@ void Partie::jouerTour(Joueur j1) {
 
 }
 
+
 void Partie::jouerPartie() {
     do {
 
@@ -90,7 +91,7 @@ void Partie::jouerPartie() {
         cout << endl;
 
         for (const auto &j : vJoueurs) {
-            jouerTour(j);
+            jouerTour(const_cast<Joueur &>(j));
 
         }
         iNoTour++;
@@ -105,7 +106,9 @@ bool Partie::checkFinDePartie() {
             return true;
         }
     }
+    cout << endl << "FIN DE PARTIE";
     return false;
+
 }
 
 std::vector<Carte> Partie::slice(std::vector<Carte> const &v, int m, int n)

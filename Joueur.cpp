@@ -118,7 +118,7 @@ void Joueur::detecterFamille(std::vector<bool>& vFamilles) {
 }
 
 void Joueur::piocher(std::vector<Carte>& vTasDePioche) {
-    this->vCarteEnMain.push_back(vTasDePioche.at(0));
+    this->insererCarteEnMain(vTasDePioche.at(0));
     vTasDePioche.erase(vTasDePioche.begin());
 }
 
@@ -131,9 +131,17 @@ const vector<Carte> &Joueur::getVCarteEnMain() const {
 }
 
 ostream& operator<<(ostream& lhs, const Joueur& rhs){
-    lhs << "[ ";
+
     for(auto carteEnMain : rhs.vCarteEnMain){
         lhs << carteEnMain << " ";
+    }
+
+
+    lhs << " ";
+
+    lhs << "[ ";
+    for(auto FamillesSurTable : rhs.vFamillesSurTable){
+        lhs << FamillesSurTable << " ";
     }
     lhs << "]" ;
 
