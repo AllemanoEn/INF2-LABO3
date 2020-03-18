@@ -56,7 +56,7 @@ void Partie::jouerTour(Joueur j1) {
 
     // Demande la carte à l'autre joueur
     auto carteAutreJoueur = j2.demanderCarte(carteAEchanger);
-    if(DEBUG_MODE) cout << j1.getStrNom() << " demande a " << j2.getStrNom() << " la carte " << carteAEchanger.getFamille() << carteAEchanger.getMembre() << endl;
+    if(DEBUG_MODE) cout << j1.getStrNom() << " demande a " << j2.getStrNom() << " la carte " << carteAEchanger.getFamille() << char(carteAEchanger.getMembre()) << endl;
 
     // Si le joueur 2 possède la carte, faire l'échange et rejouer. Sinon, le joueur 1 pioche une carte.
     if(carteAutreJoueur != vCartesJoueur2.end()) {

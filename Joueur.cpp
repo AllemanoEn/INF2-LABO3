@@ -9,7 +9,6 @@ Carte Joueur::decideCarte(vector<bool> vFamilles) {
     // Partie 1 : Carte random à demander, que le joueur ne possède PAS, et dont la famille n'est pas complète
     // Partie Bonus: Carte selon le nombre de cartes de cette famille dans la main
 
-
     // Choisir une famille au hasard
     int iFamille = rand() % NOMBRE_FAMILLES;
 
@@ -31,6 +30,7 @@ Carte Joueur::decideCarte(vector<bool> vFamilles) {
     }
 
     return carteATester;
+    
     // Stratégie pour la classe MeilleurJoueur
     /*// Sinon il va compter ses cartes et demander une carte qu'il ne possède pas encore de la famille la plus remplie dans sa main.
 

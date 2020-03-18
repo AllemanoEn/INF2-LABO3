@@ -6,6 +6,7 @@ bool Carte::operator==(const Carte &c) const {
     return (this->MEMBRE == c.MEMBRE && this->FAMILLE == c.FAMILLE);
 }
 
+
 void Carte::setMembre(unsigned short membre) {
     MEMBRE = membre;
 }
