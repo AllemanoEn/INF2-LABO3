@@ -78,7 +78,7 @@ void echangerCarte(Joueur& j1, Joueur& j2, const Carte& carteAEchanger) {
 // insère une carte à sa place
 void Joueur::insererCarteEnMain(Carte carte){
     bool inseree = false;
-    for (int i = 0; i < vCarteEnMain.size(); ++i) {
+    for (int i = 0; i < vCarteEnMain.size()-1; ++i) {
         if(carte < this->vCarteEnMain.at(i)){
             vCarteEnMain.insert(vCarteEnMain.begin()+i, carte);
             inseree = true;
