@@ -71,7 +71,7 @@ vector<Carte>::iterator Joueur::rechercherCarte(const Carte &carte) {
 
 void echangerCarte(Joueur& j1, Joueur& j2, const Carte& carteAEchanger) {
     auto carteJ2 = j2.rechercherCarte(carteAEchanger);
-    j1.vCarteEnMain.push_back(carteAEchanger);
+    j1.insererCarteEnMain(carteAEchanger);
     j2.vCarteEnMain.erase(carteJ2);
 }
 
@@ -97,24 +97,32 @@ void Joueur::trierCartesEnMain(){
 
 // Détecter si une famille est complète dans sa main et la pose
 void Joueur::detecterFamille(std::vector<bool>& vFamilles) {
+
+    // Si le joueur ne possède pas assez de carte pour créer une famille
+    if(vCarteEnMain.size() <= CARTES_PAR_FAMILLE) return;
+
     int iCpt = 0;
+    bool familleDetectee = false;
     unsigned int i = 0, j = 1;
     for (;i < vCarteEnMain.size()-1; j++) {
         if(vCarteEnMain.at(i).getFamille() == vCarteEnMain.at(j).getFamille()){
             iCpt++;
             if(iCpt == NOMBRE_FAMILLES){
+                familleDetectee = true;
                 break;
             }
-        }else{
+        } else{
             i = j;
         }
     }
 
-    vFamillesSurTable.push_back(vCarteEnMain.at(i).getFamille());
+    if(familleDetectee) {
+        vFamillesSurTable.push_back(vCarteEnMain.at(i).getFamille());
 
-    vFamilles.at(vCarteEnMain.at(i).getFamille()) = true;
+        vFamilles.at(vCarteEnMain.at(i).getFamille() - 1) = true;
 
-    vCarteEnMain.erase(vCarteEnMain.begin()+i,vCarteEnMain.begin()+j);
+        vCarteEnMain.erase(vCarteEnMain.begin() + i, vCarteEnMain.begin() + j);
+    }
 }
 
 void Joueur::piocher(std::vector<Carte>& vTasDePioche) {

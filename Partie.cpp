@@ -1,9 +1,9 @@
 #include "Partie.h"
 #include "Parametre.h"
 
-#include <random>
 #include <ctime>
 #include <algorithm>
+#include <random>
 
 using namespace std;
 
@@ -19,14 +19,14 @@ Partie::Partie() {
     }
 
     // On mélange le jeu de carte
-    /*
     unsigned seed = time(nullptr);
     shuffle(vTasDePioche.begin(), vTasDePioche.end(), default_random_engine(seed));
-     */
+
 
     //Creation des joueurs et de leur main
     for (int i = 0,c = 0; i < NOMBRE_JOUEURS; ++i,c+=CARTES_PAR_JOUEUR) {
         vJoueurs.push_back(Joueur(NOM_JOUEURS[i],slice(vTasDePioche,c,c+CARTES_PAR_JOUEUR-1)));
+        vJoueurs.at(i).trierCartesEnMain();
     }
 
     //On enlève les cartes du tas de pioche qui ont été distribuées
@@ -70,23 +70,27 @@ void Partie::jouerTour(Joueur j1) {
         j1.piocher(vTasDePioche);
         j1.detecterFamille(vFamilles);
     }
+
+
 }
 
 void Partie::jouerPartie() {
-    do
+    do {
 
-    for(const auto& j : vJoueurs){
-        jouerTour(j);
-        iNoTour++;
-    }
+        cout << "Tour " << iNoTour << endl;
 
-    while (checkFinDePartie());
+        for (const auto &j : vJoueurs) {
+            jouerTour(j);
+            iNoTour++;
+        }
+
+    } while (!checkFinDePartie());
 }
 
 
 bool Partie::checkFinDePartie() {
     for(const auto& f :vFamilles){
-        if(f==false){
+        if(!f){
             return false;
         }
     }
