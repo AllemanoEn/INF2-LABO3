@@ -51,22 +51,23 @@ void Partie::jouerTour(Joueur& j1) {
     Carte carteAEchanger = j1.decideCarte(vFamilles);
 
     // Décide d'un joueur à qui demander
-    Joueur j2 = joueurAleatoire(j1);
-    vector<Carte> vCartesJoueur2 = j2.getVCarteEnMain();
+    unsigned j2 = joueurAleatoire(j1);
+    vector<Carte> vCartesJoueur2 = vJoueurs.at(j2).getVCarteEnMain();
 
     // Demande la carte à l'autre joueur
-    bool carteAutreJoueur = j2.demanderCarte(carteAEchanger);
-    if(DEBUG_MODE) cout << j1.getStrNom() << " demande a " << j2.getStrNom() << " la carte " << carteAEchanger.getFamille() << char(carteAEchanger.getMembre()) << endl;
+    bool carteAutreJoueur = vJoueurs.at(j2).demanderCarte(carteAEchanger);
+    if(DEBUG_MODE) cout << j1.getStrNom() << " demande a " << vJoueurs.at(j2).getStrNom() << " la carte " << carteAEchanger.getFamille() << char(carteAEchanger.getMembre()) << endl;
 
     // Si le joueur 2 possède la carte, faire l'échange et rejouer. Sinon, le joueur 1 pioche une carte.
     if(carteAutreJoueur) {
-        echangerCarte(j1, j2, carteAEchanger);
-        if(DEBUG_MODE) cout << "\tet " << j2.getStrNom() << " donne la carte a " << j1.getStrNom() << endl;
+        echangerCarte(j1, vJoueurs.at(j2), carteAEchanger);
+        if(DEBUG_MODE) cout << "\tet " << vJoueurs.at(j2).getStrNom() << " donne la carte a " << j1.getStrNom() << endl;
         j1.detecterFamille(vFamilles);
+
         jouerTour(j1);
     }
     else {
-        if(DEBUG_MODE) cout << "\tmais " << j2.getStrNom() << " ne l'a pas" << endl;
+        if(DEBUG_MODE) cout << "\tmais " << vJoueurs.at(j2).getStrNom() << " ne l'a pas" << endl;
         if(!vTasDePioche.empty()){
             j1.piocher(vTasDePioche);
             j1.detecterFamille(vFamilles);
@@ -90,8 +91,8 @@ void Partie::jouerPartie() {
         }
         cout << endl;
 
-        for (const auto &j : vJoueurs) {
-            jouerTour(const_cast<Joueur &>(j));
+        for (auto j : vJoueurs) {
+            jouerTour(j);
 
         }
         iNoTour++;
@@ -120,14 +121,13 @@ std::vector<Carte> Partie::slice(std::vector<Carte> const &v, int m, int n)
     return vec;
 }
 
-Joueur Partie::joueurAleatoire(Joueur j) {
+unsigned int Partie::joueurAleatoire(Joueur j) {
     srand (static_cast<unsigned int>(time(NULL)));
-    int iRand;
-    
+    unsigned int iRand;
+
     do
         iRand = rand()%3;
     while(vJoueurs.at(iRand) == j);
 
-    Joueur lej = vJoueurs.at(iRand);
-    return lej;
+    return iRand;
 }
