@@ -14,10 +14,10 @@ public:
     std::vector<Carte> slice(std::vector<Carte> const &v, int m, int n);
 
     void jouerPartie();
+    unsigned int getiNoTour();
 private:
     void jouerTour(Joueur j);
     bool checkFinDePartie();
-    unsigned int getiNoTour();
 
     /// \brief fonction qui retourne un joueur aléatoire qui n'est pas celui passé en paramètre
     /// \param j joueur à éviter
