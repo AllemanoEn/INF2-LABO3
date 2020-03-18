@@ -97,24 +97,19 @@ void Joueur::trierCartesEnMain(){
 
 // Détecter si une famille est complète dans sa main et la pose
 void Joueur::detecterFamille(std::vector<bool>& vFamilles) {
-    int iCpt = 0;
-    unsigned int i = 0, j = 1;
-    for (;i < vCarteEnMain.size()-1; j++) {
-        if(vCarteEnMain.at(i).getFamille() == vCarteEnMain.at(j).getFamille()){
-            iCpt++;
-            if(iCpt == NOMBRE_FAMILLES){
-                break;
+    unsigned int iCpt = 0,iPos = 0;
+    for (unsigned short fam = 65; fam < 65+CARTES_PAR_FAMILLE ; fam++) {
+        for (auto c = vCarteEnMain.begin(); c < vCarteEnMain.end(); c++, iPos++) {
+            if (c->getFamille() == fam) {
+                iCpt++;
+                if (iCpt == NOMBRE_FAMILLES) {
+                    vFamilles.at(vCarteEnMain.at(iPos).getFamille() - 1) = true;
+                    
+                }
             }
-        }else{
-            i = j;
         }
     }
 
-    vFamillesSurTable.push_back(vCarteEnMain.at(i).getFamille());
-
-    vFamilles.at(vCarteEnMain.at(i).getFamille()) = true;
-
-    vCarteEnMain.erase(vCarteEnMain.begin()+i,vCarteEnMain.begin()+j);
 }
 
 void Joueur::piocher(std::vector<Carte>& vTasDePioche) {

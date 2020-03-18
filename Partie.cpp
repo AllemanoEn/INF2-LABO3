@@ -86,11 +86,11 @@ void Partie::jouerPartie() {
 
 bool Partie::checkFinDePartie() {
     for(const auto& f :vFamilles){
-        if(f==false){
-            return false;
+        if(!f){
+            return true;
         }
     }
-    return true;
+    return false;
 }
 
 std::vector<Carte> Partie::slice(std::vector<Carte> const &v, int m, int n)
