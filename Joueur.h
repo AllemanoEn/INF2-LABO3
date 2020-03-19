@@ -14,7 +14,8 @@ public:
     friend void echangerCarte(Joueur& j1, Joueur& j2, const Carte& carteAEchanger);
     Carte decideCarte(std::vector<bool> vFamilles) ;
     bool demanderCarte(const Carte& carte) ;
-    std::vector<Carte>::iterator rechercherCarte(const Carte &carte);
+
+    unsigned compteCartesFamille(unsigned iFamille) const;
 
     void insererCarteEnMain(Carte carte);
     void trierCartesEnMain();
@@ -35,8 +36,9 @@ public:
     friend std::ostream &operator<<(std::ostream &lhs, const Joueur &rhs);
 private:
     const std::string strNom;
-
     std::vector<unsigned short> vFamillesSurTable;
+
+    std::vector<Carte>::iterator rechercherCarte(const Carte &carte);
 };
 
 

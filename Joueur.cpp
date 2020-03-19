@@ -12,8 +12,8 @@ Carte Joueur::decideCarte(vector<bool> vFamilles) {
     // Choisir une famille au hasard
     int iFamille = rand() % NOMBRE_FAMILLES;
 
-    // Incrémente la famille jusqu'à trouver une famille qui n'est pas déjà complétée
-    while(vFamilles.at(iFamille) == true) {
+    // Incrémente la famille jusqu'à trouver une famille qui n'est pas déjà complétée et dont il possède au moins une carte
+    while(vFamilles.at(iFamille) == true || (compteCartesFamille(iFamille) == 0 && !vCarteEnMain.size())) {
         iFamille = (iFamille + 1)%NOMBRE_FAMILLES;
     }
     iFamille++;
@@ -30,29 +30,6 @@ Carte Joueur::decideCarte(vector<bool> vFamilles) {
     }
 
     return carteATester;
-    
-    // Stratégie pour la classe MeilleurJoueur
-    /*// Sinon il va compter ses cartes et demander une carte qu'il ne possède pas encore de la famille la plus remplie dans sa main.
-
-    vector<Carte>::iterator meilleurChoix;
-    int count = 0;
-    int countMax = 0;
-    int iFamilleEnCours = 0;
-
-    auto carte = vCarteEnMain.begin();
-    for(; carte != vCarteEnMain.end(); carte++){
-        if(carte->getFamille() != iFamilleEnCours){
-            if(count >= countMax){
-                countMax = iFamilleEnCours;
-                count = 0;
-            }
-
-        }
-        else {
-            count++;
-        }
-    }*/
-
 }
 
 
@@ -70,6 +47,7 @@ vector<Carte>::iterator Joueur::rechercherCarte(const Carte &carte) {
 
 
 void echangerCarte(Joueur& j1, Joueur& j2, const Carte& carteAEchanger) {
+
     auto carteJ2 = j2.rechercherCarte(carteAEchanger);
     j1.insererCarteEnMain(carteAEchanger);
     j2.vCarteEnMain.erase(carteJ2);
@@ -78,7 +56,7 @@ void echangerCarte(Joueur& j1, Joueur& j2, const Carte& carteAEchanger) {
 // insère une carte à sa place
 void Joueur::insererCarteEnMain(Carte carte){
     bool inseree = false;
-    for (int i = 0; i < vCarteEnMain.size()-1; ++i) {
+    for (int i = 0; i < vCarteEnMain.size(); ++i) {
         if(carte < this->vCarteEnMain.at(i)){
             vCarteEnMain.insert(vCarteEnMain.begin()+i, carte);
             inseree = true;
@@ -98,12 +76,11 @@ void Joueur::trierCartesEnMain(){
 // Détecter si une famille est complète dans sa main et la pose
 void Joueur::detecterFamille(std::vector<bool>& vFamilles) {
     unsigned int iCpt = 0,iPos = 0;
-
     for (unsigned short fam = 1; fam <= CARTES_PAR_FAMILLE ; fam++) {
         for (auto c = vCarteEnMain.begin(); c < vCarteEnMain.end(); c++, iPos++) {
             if (c->getFamille() == fam) {
                 iCpt++;
-                if (iCpt == NOMBRE_FAMILLES) {
+                if (iCpt == CARTES_PAR_FAMILLE) {
                     iPos -= (CARTES_PAR_FAMILLE -1);
                     auto pos = vCarteEnMain.begin() + iPos;
                     cout << "Famille complete : " << pos->getFamille();
@@ -112,6 +89,7 @@ void Joueur::detecterFamille(std::vector<bool>& vFamilles) {
                     vCarteEnMain.erase(pos, pos+CARTES_PAR_FAMILLE);
                 }
             }
+            else break;
         }
     }
 
@@ -150,4 +128,13 @@ ostream& operator<<(ostream& lhs, const Joueur& rhs){
 
 bool Joueur::demanderCarte(const Carte &carte) {
     return !(rechercherCarte(carte) == vCarteEnMain.end());
+}
+
+unsigned Joueur::compteCartesFamille(unsigned iFamille) const{
+    unsigned count = 0;
+    for(auto carte : vCarteEnMain){
+        if(carte.getMembre() == iFamille)
+            count++;
+    }
+    return count;
 }

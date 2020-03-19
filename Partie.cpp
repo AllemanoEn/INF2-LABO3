@@ -52,7 +52,6 @@ void Partie::jouerTour(Joueur& j1) {
 
     // Décide d'un joueur à qui demander
     unsigned j2 = joueurAleatoire(j1);
-    vector<Carte> vCartesJoueur2 = vJoueurs.at(j2).getVCarteEnMain();
 
     // Demande la carte à l'autre joueur
     bool carteAutreJoueur = vJoueurs.at(j2).demanderCarte(carteAEchanger);
@@ -77,27 +76,30 @@ void Partie::jouerTour(Joueur& j1) {
 
 }
 
-
 void Partie::jouerPartie() {
     do {
 
-        cout << "*** Tour " << iNoTour << " ***" << endl;
-        for (size_t i = 0; i < vJoueurs.size(); ++i) {
-            cout << vJoueurs.at(i).getStrNom() << " : " << vJoueurs.at(i) << endl;
-        }
-        cout  << "Pioche : ";
-        for(auto carteEnMain : vTasDePioche){
-            cout  << carteEnMain << " ";
-        }
-        cout << endl;
+        if(DEBUG_MODE) {
+            cout << "*** Tour " << iNoTour << " ***" << endl;
 
-        for (auto j : vJoueurs) {
+            for (size_t i = 0; i < vJoueurs.size(); ++i) {
+                cout << vJoueurs.at(i).getStrNom() << " : " << vJoueurs.at(i) << endl;
+            }
+            cout << "Pioche : ";
+            for (auto carteEnMain : vTasDePioche) {
+                cout << carteEnMain << " ";
+            }
+            cout << endl;
+        }
+
+        for (auto& j : vJoueurs) {
             jouerTour(j);
 
         }
         iNoTour++;
 
     } while (checkFinDePartie());
+
 }
 
 
