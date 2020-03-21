@@ -1,5 +1,6 @@
 #include "Partie.h"
 #include "Parametre.h"
+#include "Affichage.h"
 
 #include <ctime>
 #include <algorithm>
@@ -58,23 +59,18 @@ bool Partie::jouerTour(Joueur &j1) {
 
     // Demande la carte à l'autre joueur
     bool carteAutreJoueur = vJoueurs.at(j2).demanderCarte(carteAEchanger);
-    if (DEBUG_MODE)
-        cout << j1.getStrNom() << " demande a " << vJoueurs.at(j2).getStrNom() << " la carte "
-             << carteAEchanger.getFamille() << char(carteAEchanger.getMembre()) << endl;
-
+    afficherDemandeDeCarte(j1,j2,vJoueurs,carteAEchanger);
     // Si le joueur 2 possède la carte, faire l'échange et rejouer. Sinon, le joueur 1 pioche une carte.
     if (carteAutreJoueur) {
         echangerCarte(j1, vJoueurs.at(j2), carteAEchanger);
-        if (DEBUG_MODE)
-            cout << "\tet " << vJoueurs.at(j2).getStrNom() << " donne la carte a " << j1.getStrNom() << endl;
+        afficherALaCarte(j1,j2,vJoueurs);
         j1.detecterFamille(vFamilles);
         if(checkFinDePartie()){
             return true;
         }
-
         jouerTour(j1);
     } else {
-        if (DEBUG_MODE) cout << "\tmais " << vJoueurs.at(j2).getStrNom() << " ne l'a pas" << endl;
+        afficherPasDeCarte(j2,vJoueurs);
         if (!vTasDePioche.empty()) {
             j1.piocher(vTasDePioche);
             j1.detecterFamille(vFamilles);
@@ -88,31 +84,14 @@ bool Partie::jouerTour(Joueur &j1) {
 vector<int> Partie::jouerPartie() {
     bool finDePartie = false;
     do {
-
-        if (DEBUG_MODE) {
-            cout << "*** Tour " << iNoTour << " ***" << endl;
-
-            for (size_t i = 0; i < vJoueurs.size(); ++i) {
-                Joueur j = vJoueurs.at((i + premierJoueur)%NOMBRE_JOUEURS);
-                cout << j.getStrNom() << " : " << j << endl;
-            }
-            cout << "Pioche : ";
-            for (auto carteEnMain : vTasDePioche) {
-                cout << carteEnMain << " ";
-            }
-            cout << endl;
-        }
-
-        unsigned joueur = premierJoueur;
-        for (int count = 1; count <= NOMBRE_JOUEURS; joueur = (joueur+1)%NOMBRE_JOUEURS, ++count) {
-            finDePartie = jouerTour(vJoueurs.at(joueur));
+        afficherTour(iNoTour, vJoueurs, vTasDePioche);
+        for (auto &j : vJoueurs) {
+            finDePartie = jouerTour(j);
             if(finDePartie){
-                if(DEBUG_MODE)
-                    cout << endl << "FIN DE PARTIE" << endl;
+                afficherFinDePartie();
+                afficherNbTour(iNoTour);
                 return calculResultats();
             }
-
-
         }
         iNoTour++;
 
@@ -146,8 +125,6 @@ unsigned int Partie::joueurAleatoire(Joueur j) {
     while (vJoueurs.at(iRand) == j || vJoueurs.at(iRand).vCarteEnMain.empty());
 
     return iRand;
-
-
 }
 
 vector<int> Partie::calculResultats() const{
