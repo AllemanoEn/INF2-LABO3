@@ -6,6 +6,7 @@ using namespace std;
 
 // Decide quelle carte demander en fonction de sa main actuelle
 Carte Joueur::decideCarte(vector<bool> vFamilles) {
+
     // Partie 1 : Carte random à demander, que le joueur ne possède PAS, et dont la famille n'est pas complète
     // Partie Bonus: Carte selon le nombre de cartes de cette famille dans la main
 
@@ -13,10 +14,10 @@ Carte Joueur::decideCarte(vector<bool> vFamilles) {
     int iFamille = (rand() % NOMBRE_FAMILLES) + 1;
 
     // Incrémente la famille jusqu'à trouver une famille qui n'est pas déjà complétée et dont il possède au moins une carte
-    while(vFamilles.at(iFamille - 1) == true || ((compteCartesFamille(iFamille) == 0) && !(vCarteEnMain.empty()))) {
+    while(vFamilles.at(iFamille - 1) || ((compteCartesFamille(iFamille) == 0) && !(vCarteEnMain.empty()))) {
         iFamille = ((iFamille + 1)%NOMBRE_FAMILLES) + 1;
     }
-    iFamille++;
+    //iFamille++;
 
     // Choisir une carte au hasard
     unsigned int iMembre = rand() % CARTES_PAR_FAMILLE + 65;
@@ -112,9 +113,17 @@ const vector<Carte> &Joueur::getVCarteEnMain() const {
 
 ostream& operator<<(ostream& lhs, const Joueur& rhs){
 
+
+
+
+
+
+
+    //lhs << "[ ";
     for(auto carteEnMain : rhs.vCarteEnMain){
         lhs << carteEnMain << " ";
     }
+    //lhs << "]" ;
 
 
     lhs << " ";

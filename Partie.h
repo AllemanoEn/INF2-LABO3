@@ -3,6 +3,7 @@
 
 #include <vector>
 
+
 #include "Joueur.h"
 #include "Parametre.h"
 
@@ -15,6 +16,10 @@ public:
 
     void jouerPartie();
     unsigned int getiNoTour();
+
+    //TEST RANDOM
+
+
 private:
     void jouerTour(Joueur& j);
     bool checkFinDePartie();
