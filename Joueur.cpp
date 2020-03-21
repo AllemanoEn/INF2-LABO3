@@ -10,11 +10,11 @@ Carte Joueur::decideCarte(vector<bool> vFamilles) {
     // Partie Bonus: Carte selon le nombre de cartes de cette famille dans la main
 
     // Choisir une famille au hasard
-    int iFamille = rand() % NOMBRE_FAMILLES;
+    int iFamille = (rand() % NOMBRE_FAMILLES) + 1;
 
     // Incrémente la famille jusqu'à trouver une famille qui n'est pas déjà complétée et dont il possède au moins une carte
-    while(vFamilles.at(iFamille) == true || (compteCartesFamille(iFamille) == 0 && !vCarteEnMain.size())) {
-        iFamille = (iFamille + 1)%NOMBRE_FAMILLES;
+    while(vFamilles.at(iFamille - 1) == true || ((compteCartesFamille(iFamille) == 0) && !(vCarteEnMain.empty()))) {
+        iFamille = ((iFamille + 1)%NOMBRE_FAMILLES) + 1;
     }
     iFamille++;
 
@@ -75,21 +75,23 @@ void Joueur::trierCartesEnMain(){
 
 // Détecter si une famille est complète dans sa main et la pose
 void Joueur::detecterFamille(std::vector<bool>& vFamilles) {
-    unsigned int iCpt = 0,iPos = 0;
-    for (unsigned short fam = 1; fam <= CARTES_PAR_FAMILLE ; fam++) {
-        for (auto c = vCarteEnMain.begin(); c < vCarteEnMain.end(); c++, iPos++) {
+
+    unsigned int iCpt,iPos = 0;
+    for (unsigned short fam = 1; fam <= NOMBRE_FAMILLES ; fam++) {
+        iCpt = 0;
+        for (auto c = vCarteEnMain.begin() + iPos; c < vCarteEnMain.end(); c++, iPos++) {
             if (c->getFamille() == fam) {
                 iCpt++;
                 if (iCpt == CARTES_PAR_FAMILLE) {
                     iPos -= (CARTES_PAR_FAMILLE -1);
                     auto pos = vCarteEnMain.begin() + iPos;
-                    cout << "Famille complete : " << pos->getFamille();
+                    cout << "Famille complete : " << pos->getFamille() << " ";
                     vFamilles.at(vCarteEnMain.at(iPos).getFamille() - 1) = true;
                     vFamillesSurTable.push_back(pos->getFamille());
                     vCarteEnMain.erase(pos, pos+CARTES_PAR_FAMILLE);
                 }
             }
-            else break;
+            else if (c-> getFamille() > fam) break;
         }
     }
 
@@ -133,7 +135,7 @@ bool Joueur::demanderCarte(const Carte &carte) {
 unsigned Joueur::compteCartesFamille(unsigned iFamille) const{
     unsigned count = 0;
     for(auto carte : vCarteEnMain){
-        if(carte.getMembre() == iFamille)
+        if(carte.getFamille() == iFamille)
             count++;
     }
     return count;

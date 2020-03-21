@@ -128,7 +128,7 @@ unsigned int Partie::joueurAleatoire(Joueur j) {
     unsigned int iRand;
 
     do
-        iRand = rand()%3;
+        iRand = rand()%NOMBRE_JOUEURS;
     while(vJoueurs.at(iRand) == j);
 
     return iRand;
