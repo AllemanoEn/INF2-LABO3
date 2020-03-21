@@ -7,7 +7,7 @@
 
 using namespace std;
 
-Partie::Partie() {
+Partie::Partie(const unsigned premierJoueur) : premierJoueur(premierJoueur) {
 
 
     srand((unsigned) time(NULL));
@@ -85,7 +85,7 @@ bool Partie::jouerTour(Joueur &j1) {
 
 }
 
-void Partie::jouerPartie() {
+vector<int> Partie::jouerPartie() {
     bool finDePartie = false;
     do {
 
@@ -93,7 +93,8 @@ void Partie::jouerPartie() {
             cout << "*** Tour " << iNoTour << " ***" << endl;
 
             for (size_t i = 0; i < vJoueurs.size(); ++i) {
-                cout << vJoueurs.at(i).getStrNom() << " : " << vJoueurs.at(i) << endl;
+                Joueur j = vJoueurs.at((i + premierJoueur)%NOMBRE_JOUEURS);
+                cout << j.getStrNom() << " : " << j << endl;
             }
             cout << "Pioche : ";
             for (auto carteEnMain : vTasDePioche) {
@@ -102,12 +103,13 @@ void Partie::jouerPartie() {
             cout << endl;
         }
 
-        for (auto &j : vJoueurs) {
-            finDePartie = jouerTour(j);
+        unsigned joueur = premierJoueur;
+        for (int count = 1; count <= NOMBRE_JOUEURS; joueur = (joueur+1)%NOMBRE_JOUEURS, ++count) {
+            finDePartie = jouerTour(vJoueurs.at(joueur));
             if(finDePartie){
                 if(DEBUG_MODE)
-                    cout << endl << "FIN DE PARTIE";
-                return;
+                    cout << endl << "FIN DE PARTIE" << endl;
+                return calculResultats();
             }
 
 
@@ -146,4 +148,12 @@ unsigned int Partie::joueurAleatoire(Joueur j) {
     return iRand;
 
 
+}
+
+vector<int> Partie::calculResultats() const{
+    vector<int> vResultats;
+    for(auto& joueur : vJoueurs){
+        vResultats.push_back(joueur.getVFamillesSurTable().size());
+    }
+    return vResultats;
 }

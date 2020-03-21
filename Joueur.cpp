@@ -29,6 +29,10 @@ Carte Joueur::decideCarte(vector<bool> vFamilles) {
     return carteATester;
 }
 
+const vector<unsigned short> &Joueur::getVFamillesSurTable() const {
+    return vFamillesSurTable;
+}
+
 
 // Recherche une carte dans la main du joueur
 vector<Carte>::iterator Joueur::rechercherCarte(const Carte &carte) {

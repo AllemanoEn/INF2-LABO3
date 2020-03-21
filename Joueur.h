@@ -34,6 +34,9 @@ public:
         return (lhs.strNom == rhs.strNom) && (lhs.getVCarteEnMain() == rhs.getVCarteEnMain());
     }
     friend std::ostream &operator<<(std::ostream &lhs, const Joueur &rhs);
+
+    const std::vector<unsigned short> &getVFamillesSurTable() const;
+
 private:
     const std::string strNom;
     std::vector<unsigned short> vFamillesSurTable;

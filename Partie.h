@@ -10,16 +10,18 @@
 
 class Partie {
 public:
-    Partie();
+    Partie(const unsigned premierJoueur);
 
     std::vector<Carte> slice(std::vector<Carte> const &v, int m, int n);
 
-    void jouerPartie();
+    std::vector<int> jouerPartie();
     unsigned int getiNoTour();
 
 private:
     bool jouerTour(Joueur& j);
     bool checkFinDePartie();
+    unsigned premierJoueur;
+    std::vector<int> calculResultats() const;
 
     /// \brief fonction qui retourne un joueur aléatoire qui n'est pas celui passé en paramètre
     /// \param j joueur à éviter
