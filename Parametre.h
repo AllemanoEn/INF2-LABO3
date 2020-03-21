@@ -16,4 +16,7 @@ const std::string NOM_JOUEURS[] {"Alice",
                                  "Dickael",
                                  "Henso"};
 
+
+
+
 #endif //INF2_LABO3_PARAMETRE_H

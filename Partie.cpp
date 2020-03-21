@@ -9,10 +9,7 @@ using namespace std;
 
 Partie::Partie() {
 
-    //Generateur aléatoir
-    //std::random_device dev;
-    //std::mt19937 rng(dev());
-    //std::uniform_int_distribution<std::mt19937::result_type> dist4(0,3);
+
     srand((unsigned) time(NULL));
 
     // Creation du tas de pioche
@@ -51,7 +48,7 @@ unsigned int Partie::getiNoTour() {
     return iNoTour;
 }
 
-void Partie::jouerTour(Joueur &j1) {
+bool Partie::jouerTour(Joueur &j1) {
 
     // Décide d'une carte à échanger
     Carte carteAEchanger = j1.decideCarte(vFamilles);
@@ -71,6 +68,9 @@ void Partie::jouerTour(Joueur &j1) {
         if (DEBUG_MODE)
             cout << "\tet " << vJoueurs.at(j2).getStrNom() << " donne la carte a " << j1.getStrNom() << endl;
         j1.detecterFamille(vFamilles);
+        if(checkFinDePartie()){
+            return true;
+        }
 
         jouerTour(j1);
     } else {
@@ -81,10 +81,12 @@ void Partie::jouerTour(Joueur &j1) {
         }
     }
 
+    return checkFinDePartie();
 
 }
 
 void Partie::jouerPartie() {
+    bool finDePartie = false;
     do {
 
         if (DEBUG_MODE) {
@@ -101,12 +103,14 @@ void Partie::jouerPartie() {
         }
 
         for (auto &j : vJoueurs) {
-            jouerTour(j);
+            finDePartie= jouerTour(j);
+            if(finDePartie)
+                return;
 
         }
         iNoTour++;
 
-    } while (checkFinDePartie());
+    } while (!finDePartie);
 
 }
 
@@ -114,11 +118,11 @@ void Partie::jouerPartie() {
 bool Partie::checkFinDePartie() {
     for (const auto &f :vFamilles) {
         if (!f) {
-            return true;
+            return false;
         }
     }
     cout << endl << "FIN DE PARTIE";
-    return false;
+    return true;
 
 }
 
@@ -131,39 +135,12 @@ std::vector<Carte> Partie::slice(std::vector<Carte> const &v, int m, int n) {
 }
 
 unsigned int Partie::joueurAleatoire(Joueur j) {
-//    srand (static_cast<unsigned int>(time(NULL)));
-//    unsigned int iRand;
-
-    //inspiré de: http://www.cplusplus.com/reference/random/
-/*    std::default_random_engine generator;
-    std::uniform_int_distribution<unsigned> distribution(0,NOMBRE_JOUEURS-1);
-    unsigned iRand = distribution(generator);
-    while (vJoueurs.at(iRand) == j){
-        iRand = distribution(generator);
-    }*/
-
-    //do
-    // iRand = rand() % 3;
-
-    //while (vJoueurs.at(iRand) == j);
-
-
     unsigned int iRand = 0;
     do
         iRand = rand() % NOMBRE_JOUEURS;
-    while (vJoueurs.at(iRand) == j);
+    while (vJoueurs.at(iRand) == j || vJoueurs.at(iRand).vCarteEnMain.empty());
 
     return iRand;
 
-/*    std::random_device dev;
-    std::mt19937 rng(dev());
-    std::uniform_int_distribution<std::mt19937::result_type> dist(0,NOMBRE_JOUEURS); // distribution in range [0, NOMBRE_JOUEURS]
-
-    unsigned iRand = 0;
-    iRand = dist(rng);
-    while (vJoueurs.at(iRand) == j){
-        iRand = dist(rng);
-    }
-    return iRand;*/
 
 }

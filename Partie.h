@@ -17,11 +17,8 @@ public:
     void jouerPartie();
     unsigned int getiNoTour();
 
-    //TEST RANDOM
-
-
 private:
-    void jouerTour(Joueur& j);
+    bool jouerTour(Joueur& j);
     bool checkFinDePartie();
 
     /// \brief fonction qui retourne un joueur aléatoire qui n'est pas celui passé en paramètre
