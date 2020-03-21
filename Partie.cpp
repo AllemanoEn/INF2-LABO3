@@ -103,14 +103,18 @@ void Partie::jouerPartie() {
         }
 
         for (auto &j : vJoueurs) {
-            finDePartie= jouerTour(j);
-            if(finDePartie)
+            finDePartie = jouerTour(j);
+            if(finDePartie){
+                if(DEBUG_MODE)
+                    cout << endl << "FIN DE PARTIE";
                 return;
+            }
+
 
         }
         iNoTour++;
 
-    } while (!finDePartie);
+    } while (true);
 
 }
 
@@ -121,7 +125,6 @@ bool Partie::checkFinDePartie() {
             return false;
         }
     }
-    cout << endl << "FIN DE PARTIE";
     return true;
 
 }
