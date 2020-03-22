@@ -1,3 +1,10 @@
+/// \file Joueur.cpp
+/// \authors Enzo Allemano, David Pellissier, Michael Ruckstuhl
+/// \date 22.03.2020
+///
+/// Remarque :
+///
+/// Compilateur : MinGw-g++ 6.3.0
 #include "Joueur.h"
 #include "Parametre.h"
 #include "Affichage.h"

@@ -1,3 +1,13 @@
+/// \file Partie.h
+/// \authors Enzo Allemano, David Pellissier, Michael Ruckstuhl
+/// \date 22.03.2020
+///
+/// \brief \b Laboratoire \b 03
+/// \brief Contient la classe Partie
+///
+/// Remarque :
+///
+/// Compilateur : MinGw-g++ 6.3.0
 #ifndef INF2_LABO3_PARTIE_H
 #define INF2_LABO3_PARTIE_H
 
@@ -19,7 +29,7 @@ public:
      * @param vJoueurs les joueurs de la partie
      * @param premierJoueur le premier joueur
      */
-    Partie(std::vector<Joueur *> vJoueurs, const unsigned premierJoueur);
+    Partie(std::vector<Joueur *> vJoueurs, unsigned premierJoueur);
 
     /**
      * Fonction qui sert à faire jouer la partie
@@ -68,11 +78,11 @@ private:
     unsigned joueurAleatoire(Joueur j);
 
     /**
-     * 
-     * @param v
-     * @param m
-     * @param n
-     * @return
+     * Fonction qui permet d'extraie un bout de vecteur entre deux positions
+     * @param v vecteur source
+     * @param m 1er position
+     * @param n 2eme position
+     * @return le vecteur entre les positions 1 et 2
      */
     std::vector<Carte> slice(std::vector<Carte> const &v, int m, int n);
 

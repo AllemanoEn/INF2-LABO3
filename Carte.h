@@ -1,7 +1,13 @@
-//
-// ATTENTION: PAS ENCORE TESTé
-//
-
+/// \file Carte.h
+/// \authors Enzo Allemano, David Pellissier, Michael Ruckstuhl
+/// \date 22.03.2020
+///
+/// \brief \b Laboratoire \b 03
+/// \brief Contient la classe Carte
+///
+/// Remarque :
+///
+/// Compilateur : MinGw-g++ 6.3.0
 #ifndef INF2_LABO3_CARTE_H
 #define INF2_LABO3_CARTE_H
 
