@@ -109,7 +109,7 @@ public:
     const std::string &getStrNom() const;
 
     /**
-     * Prend la derniers carte de du vecteur passer en paramètre
+     * Prend la dernières carte du vecteur passer en paramètre
      * Insère cette carte dans la main du joueur (vCarteEnMain)
      * Supprime cette carte du vecteur passé en référence
      * @param vTasDePioche vecteur passé en référence
@@ -117,25 +117,46 @@ public:
     void piocher(std::vector<Carte> &vTasDePioche);
 
     /**
-     * 
-     * @param lhs
-     * @param rhs
-     * @return
+     * Surcharge de l'opérateur ==.
+     * Retourne vrai si les joueur ont les mêmes nom et jeu de carte. Sinon faux.
+     * @param lhs un joueur
+     * @param rhs un autre joueur
+     * @return vrai si les joueur ont les mêmes nom et jeu de carte. Sinon faux.
      */
     friend bool operator==(const Joueur &lhs, const Joueur &rhs) {
         return (lhs.strNom == rhs.strNom) && (lhs.getVCarteEnMain() == rhs.getVCarteEnMain());
     }
 
+    /**
+     * Lors d'un cout affiche:
+     * les carte de la main du joueur [Les familles complétées du joueur]
+     * @param lhs outstream
+     * @param rhs le joueur
+     * @return ce qui est indiqué plus haut
+     */
     friend std::ostream &operator<<(std::ostream &lhs, const Joueur &rhs);
 
+    /**
+     * Accesseur de vFamillesSurTable
+     * @return vFamillesSurTable en référence
+     */
     const std::vector<unsigned short> &getVFamillesSurTable() const;
 
+    /**
+     * Modifie vFamillesSurTable comme le vecteur passé en paramètre (référence)
+     * @param vFamillesSurTable
+     */
     void setVFamillesSurTable(const std::vector<unsigned short> &vFamillesSurTable);
 
 private:
     const std::string strNom;
     std::vector<unsigned short> vFamillesSurTable;
 
+    /**
+     * Recherche une carte dans la main du joueur (vCarteEnMain)
+     * @param carte carte à rechercher
+     * @return l'itérateur de la carte recherchée
+     */
     std::vector<Carte>::iterator rechercherCarte(const Carte &carte);
 };
 

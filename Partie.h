@@ -10,6 +10,15 @@
 
 class Partie {
 public:
+
+    /**
+     * Construit une partie selon les constantes de parametre.h
+     * vJoueurs est initialise les joueurs de la parties
+     * - Lors de sa création, la partie attribut des cartes aux joueurs
+     * il est aussi défini quel est le joueur qui débute la partie
+     * @param vJoueurs les joueurs de la partie
+     * @param premierJoueur le premier joueur
+     */
     Partie(std::vector<Joueur*> vJoueurs , const unsigned premierJoueur);
 
     std::vector<Carte> slice(std::vector<Carte> const &v, int m, int n);

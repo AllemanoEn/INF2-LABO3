@@ -1,4 +1,3 @@
-
 #include "Partie.h"
 #include "MeilleurJoueur.h"
 #include <ctime>
@@ -9,7 +8,7 @@ int main() {
     srand((unsigned) time(NULL));
     const int NBSERIEPARTIE = 5;
 
- // CAS 1
+    // CAS 1
     const int NBPARTIES = 100;
     vector<int> vTotaux1(NOMBRE_JOUEURS);
     MeilleurJoueur j1 (NOM_JOUEURS[0], {});
