@@ -48,7 +48,7 @@ public:
      * des familles déjà complétées.
      * @param vFamilles vecteur de bool indiquant quelles sont les familles déjà complétées
      * @return la carte que le joueur veut demander.
-     * @details Cette fonction choisis au hasard une famille
+     * @details Cette fonction choisit au hasard une famille
      * Incrémente la famille si celle choisie au hasard n'est pas présente dans la main du joueur.
      * Si la main du joueur est vide, la famille est incrémentée jusqu'à rouer une famille qui n'est
      * pas déjà complétée.
