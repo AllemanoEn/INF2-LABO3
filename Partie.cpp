@@ -11,7 +11,7 @@ using namespace std;
 Partie::Partie(const unsigned premierJoueur) : premierJoueur(premierJoueur) {
 
 
-    srand((unsigned) time(NULL));
+
 
     // Creation du tas de pioche
     unsigned short famille = 65;

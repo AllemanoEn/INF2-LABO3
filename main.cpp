@@ -4,12 +4,12 @@
 using namespace std;
 
 int main() {
-    Partie p1(1);
-    p1.jouerPartie();
 
-/*    // CAS 1
+    srand((unsigned) time(NULL));
+
+ // CAS 1
     const int NBPARTIES = 100;
-    vector<int> vTotaux1(4);
+    vector<int> vTotaux1(NOMBRE_JOUEURS);
     for(int partie = 1; partie <= NBPARTIES; ++partie){
         Partie p1(1);
         vector<int> vResultats = p1.jouerPartie();
@@ -25,7 +25,7 @@ int main() {
 
     // CAS 2
     const int NBPARTIES2 = 100;
-    vector<int> vTotaux2(4);
+    vector<int> vTotaux2(NOMBRE_JOUEURS);
     for(int partie = 1; partie <= NBPARTIES2; ++partie){
         Partie p2(partie%NOMBRE_JOUEURS);
         vector<int> vResultats2 = p2.jouerPartie();
@@ -37,7 +37,7 @@ int main() {
     cout << endl << "Resultats cas 2 (sur " << NBPARTIES << " parties):" << endl;
     for(int i = 0; i < NOMBRE_JOUEURS; ++i){
         cout << "Joueur " << i+1 << ": " << (float(vTotaux2.at(i))/(NBPARTIES2*NOMBRE_FAMILLES)) * 100 << "%" << endl;
-    }*/
+    }
 
 
     return 0;
