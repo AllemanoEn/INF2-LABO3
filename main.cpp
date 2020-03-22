@@ -4,6 +4,8 @@
 using namespace std;
 
 int main() {
+    Partie p(1);
+    p.jouerPartie();
 
     srand((unsigned) time(NULL));
     const int NBSERIEPARTIE = 5;

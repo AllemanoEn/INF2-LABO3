@@ -82,6 +82,7 @@ bool Partie::jouerTour(Joueur &j1) {
 }
 
 vector<int> Partie::jouerPartie() {
+    afficherPartie();
     bool finDePartie = false;
     do {
         afficherTour(iNoTour, vJoueurs, vTasDePioche);
