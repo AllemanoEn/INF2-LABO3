@@ -32,14 +32,14 @@ Carte MeilleurJoueur::decideCarte(const std::vector<bool>& vFamilles) const {
     }
 
     // Choisir une carte au hasard
-    unsigned short iMembre = rand() % CARTES_PAR_FAMILLE + 65;
+    auto iMembre = rand() % CARTES_PAR_FAMILLE + 65;
 
     // Incrémente la carte jusqu'à trouver une carte qui n'est pas dans la main du joueur
-    Carte carteATester (static_cast<unsigned short>(iFamille), iMembre);
+    Carte carteATester (static_cast<unsigned short>(iFamille), static_cast<unsigned short>(iMembre));
     while(demanderCarte(carteATester)) {
         iMembre = (iMembre)%CARTES_PAR_FAMILLE + 65;
 
-        carteATester.setMembre(iMembre);
+        carteATester.setMembre(static_cast<unsigned short>(iMembre));
     }
 
     return carteATester;
