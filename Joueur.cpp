@@ -11,6 +11,13 @@
 
 using namespace std;
 
+void echangerCarte(Joueur &j1, Joueur &j2, const Carte &carteAEchanger) {
+
+    auto carteJ2 = j2.rechercherCarte(carteAEchanger);
+    j1.insererCarteEnMain(carteAEchanger);
+    j2.vCarteEnMain.erase(carteJ2);
+}
+
 Carte Joueur::decideCarte(const vector<bool>& vFamilles) const{
 
     // Choisir une famille au hasard
@@ -34,32 +41,21 @@ Carte Joueur::decideCarte(const vector<bool>& vFamilles) const{
     return carteATester;
 }
 
-const vector<unsigned short> &Joueur::getVFamillesSurTable() const {
-    return vFamillesSurTable;
+
+bool Joueur::demanderCarte(const Carte &carte) const{
+    return !(rechercherCarte(carte) == vCarteEnMain.end());
 }
 
 
-// Recherche une carte dans la main du joueur
-vector<Carte>::const_iterator Joueur::rechercherCarte(const Carte &carte) const {
-
-    auto posCarte = vCarteEnMain.begin();
-    for (; posCarte != vCarteEnMain.end(); ++posCarte) {
-        if (*posCarte == carte)
-            break;
+unsigned Joueur::compteCartesFamille(unsigned iFamille) const{
+    unsigned count = 0;
+    for (auto carte : vCarteEnMain) {
+        if (carte.getFamille() == iFamille)
+            count++;
     }
-
-    return posCarte;
+    return count;
 }
 
-
-void echangerCarte(Joueur &j1, Joueur &j2, const Carte &carteAEchanger) {
-
-    auto carteJ2 = j2.rechercherCarte(carteAEchanger);
-    j1.insererCarteEnMain(carteAEchanger);
-    j2.vCarteEnMain.erase(carteJ2);
-}
-
-// insère une carte à sa place
 void Joueur::insererCarteEnMain(const Carte& carte) {
     bool inseree = false;
     for (unsigned int i = 0; i < vCarteEnMain.size(); ++i) {
@@ -73,11 +69,20 @@ void Joueur::insererCarteEnMain(const Carte& carte) {
         vCarteEnMain.push_back(carte);
 }
 
-// Trie les cartes de la main du joueur
 void Joueur::trierCartesEnMain() {
     std::sort(vCarteEnMain.begin(), vCarteEnMain.end());
 }
 
+vector<Carte>::const_iterator Joueur::rechercherCarte(const Carte &carte) const {
+
+    auto posCarte = vCarteEnMain.begin();
+    for (; posCarte != vCarteEnMain.end(); ++posCarte) {
+        if (*posCarte == carte)
+            break;
+    }
+
+    return posCarte;
+}
 
 // Détecter si une famille est complète dans sa main et la pose
 void Joueur::detecterFamille(std::vector<bool> &vFamilles) {
@@ -107,12 +112,16 @@ void Joueur::piocher(std::vector<Carte> &vTasDePioche) {
     vTasDePioche.pop_back();
 }
 
-const string &Joueur::getStrNom() const {
-    return strNom;
+const vector<unsigned short> &Joueur::getVFamillesSurTable() const {
+    return vFamillesSurTable;
 }
 
 const vector<Carte> &Joueur::getVCarteEnMain() const {
     return vCarteEnMain;
+}
+
+const string &Joueur::getStrNom() const {
+    return strNom;
 }
 
 ostream &operator<<(ostream &lhs, const Joueur &rhs) {
@@ -131,21 +140,8 @@ ostream &operator<<(ostream &lhs, const Joueur &rhs) {
     return lhs;
 }
 
-bool Joueur::demanderCarte(const Carte &carte) const{
-    return !(rechercherCarte(carte) == vCarteEnMain.end());
-}
-
 void Joueur::setVFamillesSurTable(const vector<unsigned short> &vFamillesSurTable) {
     Joueur::vFamillesSurTable = vFamillesSurTable;
-}
-
-unsigned Joueur::compteCartesFamille(unsigned iFamille) const{
-    unsigned count = 0;
-    for (auto carte : vCarteEnMain) {
-        if (carte.getFamille() == iFamille)
-            count++;
-    }
-    return count;
 }
 
 void Joueur::setVCarteEnMain(const vector<Carte> &vCarteEnMain) {

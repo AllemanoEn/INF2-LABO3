@@ -107,6 +107,14 @@ public:
     void detecterFamille(std::vector<bool> &vFamilles);
 
     /**
+     * Prend la dernières carte du vecteur passer en paramètre
+     * Insère cette carte dans la main du joueur (vCarteEnMain)
+     * Supprime cette carte du vecteur passé en référence
+     * @param vTasDePioche vecteur passé en référence
+     */
+    void piocher(std::vector<Carte> &vTasDePioche);
+
+    /**
      * Retourne en référence la main du joueur vCarteEnMain
      * @return en référence la main du joueur vCarteEnMain
      */
@@ -123,14 +131,6 @@ public:
      * @param vCarteEnMain
      */
     void setVCarteEnMain(const std::vector<Carte> &vCarteEnMain);
-
-    /**
-     * Prend la dernières carte du vecteur passer en paramètre
-     * Insère cette carte dans la main du joueur (vCarteEnMain)
-     * Supprime cette carte du vecteur passé en référence
-     * @param vTasDePioche vecteur passé en référence
-     */
-    void piocher(std::vector<Carte> &vTasDePioche);
 
     /**
      * Surcharge de l'opérateur ==.

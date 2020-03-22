@@ -13,7 +13,6 @@
 
 #include <vector>
 
-
 #include "Joueur.h"
 #include "Parametre.h"
 
