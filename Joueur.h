@@ -46,7 +46,7 @@ public:
      * Ce membre est incrémenté tant que la carte définie par le membre et la famille choisie est
      * présente dans la main du joueur.
      */
-    Carte decideCarte(std::vector<bool> vFamilles);
+    virtual Carte decideCarte(std::vector<bool> vFamilles);
 
     /**
      * Retourne vrai si la carte passée en paramètre est présente dans la main du joueur (vCarteEnMain).

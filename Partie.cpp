@@ -26,7 +26,6 @@ Partie::Partie(std::vector<Joueur*> joueurs, const unsigned premierJoueur) : vJo
     shuffle(vTasDePioche.begin(), vTasDePioche.end(), default_random_engine(seed));
 
 
-    // Distribution des cartes et remise à zéro des vecteurs FamilleSurTable
     for (int i = 0, c = 0; i < NOMBRE_JOUEURS; ++i, c += CARTES_PAR_JOUEUR) {
         vJoueurs.at(i)->setVCarteEnMain(slice(vTasDePioche, c, c + CARTES_PAR_JOUEUR - 1));
         vJoueurs.at(i)->trierCartesEnMain();
@@ -50,23 +49,23 @@ unsigned int Partie::getiNoTour() {
     return iNoTour;
 }
 
-template <typename T>
-bool Partie::jouerTour(T& j1) {
+
+bool Partie::jouerTour(Joueur& j1) {
 
     // Décide d'une carte à échanger
-    Carte carteAEchanger = j1->decideCarte(vFamilles);
+    Carte carteAEchanger = j1.decideCarte(vFamilles);
 
     // Décide d'un joueur à qui demander
-    unsigned j2 = joueurAleatoire(*j1);
+    unsigned j2 = joueurAleatoire(j1);
 
     // Demande la carte à l'autre joueur
     bool carteAutreJoueur = vJoueurs.at(j2)->demanderCarte(carteAEchanger);
-    afficherDemandeDeCarte(*j1,j2,vJoueurs,carteAEchanger);
+    afficherDemandeDeCarte(j1,j2,vJoueurs,carteAEchanger);
     // Si le joueur 2 possède la carte, faire l'échange et rejouer. Sinon, le joueur 1 pioche une carte.
     if (carteAutreJoueur) {
-        echangerCarte(*j1, *vJoueurs.at(j2), carteAEchanger);
-        afficherALaCarte(*j1,j2,vJoueurs);
-        j1->detecterFamille(vFamilles);
+        echangerCarte(j1, *vJoueurs.at(j2), carteAEchanger);
+        afficherALaCarte(j1,j2,vJoueurs);
+        j1.detecterFamille(vFamilles);
         if(checkFinDePartie()){
             return true;
         }
@@ -74,8 +73,8 @@ bool Partie::jouerTour(T& j1) {
     } else {
         afficherPasDeCarte(j2,vJoueurs);
         if (!vTasDePioche.empty()) {
-            j1->piocher(vTasDePioche);
-            j1->detecterFamille(vFamilles);
+            j1.piocher(vTasDePioche);
+            j1.detecterFamille(vFamilles);
         }
     }
 
@@ -90,7 +89,7 @@ vector<int> Partie::jouerPartie() {
     do {
         afficherTour(iNoTour, vJoueurs, vTasDePioche, true);
         for (auto &j : vJoueurs) {
-            finDePartie = jouerTour(j);
+            finDePartie = jouerTour(*j);
             if(finDePartie){
                 afficherTour(iNoTour, vJoueurs, vTasDePioche, false);
                 afficherFinDePartie();

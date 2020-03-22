@@ -18,8 +18,8 @@ public:
     unsigned int getiNoTour();
 
 private:
-    template <typename T>
-    bool jouerTour(T& j);
+
+    bool jouerTour(Joueur& j);
     bool checkFinDePartie();
     unsigned premierJoueur;
     std::vector<int> calculResultats() const;
