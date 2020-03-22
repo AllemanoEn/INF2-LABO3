@@ -1,4 +1,10 @@
-
+/// \file Affichage.cpp
+/// \authors Enzo Allemano, David Pellissier, Michael Ruckstuhl
+/// \date 22.03.2020
+///
+/// Remarque :
+///
+/// Compilateur : MinGw-g++ 6.3.0
 
 #include "Affichage.h"
 #include <iostream>

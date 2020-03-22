@@ -1,3 +1,13 @@
+/// \file Affichage.h
+/// \authors Enzo Allemano, David Pellissier, Michael Ruckstuhl
+/// \date 22.03.2020
+///
+/// \brief \b Laboratoire \b 03
+/// \brief Contient la affichages du debug mode
+///
+/// Remarque :
+///
+/// Compilateur : MinGw-g++ 6.3.0
 #ifndef INF2_LABO3_AFFICHAGE_H
 #define INF2_LABO3_AFFICHAGE_H
 
