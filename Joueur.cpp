@@ -4,8 +4,7 @@
 
 using namespace std;
 
-
-Carte Joueur::decideCarte(vector<bool> vFamilles) {
+Carte Joueur::decideCarte(const vector<bool>& vFamilles) const{
 
     // Choisir une famille au hasard
     int iFamille = (rand() % NOMBRE_FAMILLES) + 1;
@@ -33,7 +32,7 @@ const vector<unsigned short> &Joueur::getVFamillesSurTable() const {
 
 
 // Recherche une carte dans la main du joueur
-vector<Carte>::iterator Joueur::rechercherCarte(const Carte &carte) {
+vector<Carte>::const_iterator Joueur::rechercherCarte(const Carte &carte) const {
 
     auto posCarte = vCarteEnMain.begin();
     for (; posCarte != vCarteEnMain.end(); ++posCarte) {
@@ -53,7 +52,7 @@ void echangerCarte(Joueur &j1, Joueur &j2, const Carte &carteAEchanger) {
 }
 
 // insère une carte à sa place
-void Joueur::insererCarteEnMain(Carte carte) {
+void Joueur::insererCarteEnMain(const Carte& carte) {
     bool inseree = false;
     for (int i = 0; i < vCarteEnMain.size(); ++i) {
         if (carte < this->vCarteEnMain.at(i)) {
@@ -124,7 +123,7 @@ ostream &operator<<(ostream &lhs, const Joueur &rhs) {
     return lhs;
 }
 
-bool Joueur::demanderCarte(const Carte &carte) {
+bool Joueur::demanderCarte(const Carte &carte) const{
     return !(rechercherCarte(carte) == vCarteEnMain.end());
 }
 

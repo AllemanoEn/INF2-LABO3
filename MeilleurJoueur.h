@@ -10,7 +10,7 @@
 class MeilleurJoueur : public Joueur{
 public:
     MeilleurJoueur(std::string nom, std::vector<Carte> cartes) : Joueur(nom, cartes) { }
-    Carte decideCarte(std::vector<bool> vFamilles);
+    Carte decideCarte(const std::vector<bool>& vFamilles) const;
 };
 
 

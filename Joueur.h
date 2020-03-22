@@ -31,7 +31,7 @@ public:
      * @param carteAEchanger la carte que le premier joueur doit prendre du deuxième
      */
     friend void echangerCarte(Joueur &j1, Joueur &j2, const Carte &carteAEchanger);
-    void setVCarteEnMain(const std::vector<Carte> &vCarteEnMain);
+
 
     /**
      * Decide quelle carte le jouer va demander en fonction de sa main actuelle et en prenant compte
@@ -46,7 +46,7 @@ public:
      * Ce membre est incrémenté tant que la carte définie par le membre et la famille choisie est
      * présente dans la main du joueur.
      */
-    virtual Carte decideCarte(std::vector<bool> vFamilles);
+    virtual Carte decideCarte(const std::vector<bool>& vFamilles) const;
 
     /**
      * Retourne vrai si la carte passée en paramètre est présente dans la main du joueur (vCarteEnMain).
@@ -55,7 +55,7 @@ public:
      * @return vrai si la carte passée en paramètre est présente dans la main du joueur (vCarteEnMain).
      * Sinon faux.
      */
-    bool demanderCarte(const Carte &carte);
+    bool demanderCarte(const Carte &carte) const;
 
     /**
      * Retourne le nombre (unsigned) de carte de la famille "iFamille" que le joueur possède (vCarteEnMain).
@@ -75,7 +75,7 @@ public:
      * Si ceci n'est jamais satisfait, la carte est inserée en dernière position.
      * @param carte la carte à insérer
      */
-    void insererCarteEnMain(Carte carte);
+    void insererCarteEnMain(const Carte& carte);
 
     /**
      * Trie les cartes de la main du joueur dans un odre croissant.
@@ -107,6 +107,12 @@ public:
      * @return  en référence le nom (string) du joueur
      */
     const std::string &getStrNom() const;
+
+    /**
+     * Définit la main d'un joueur
+     * @param vCarteEnMain
+     */
+    void setVCarteEnMain(const std::vector<Carte> &vCarteEnMain);
 
     /**
      * Prend la dernières carte du vecteur passer en paramètre
@@ -157,7 +163,7 @@ private:
      * @param carte carte à rechercher
      * @return l'itérateur de la carte recherchée
      */
-    std::vector<Carte>::iterator rechercherCarte(const Carte &carte);
+    std::vector<Carte>::const_iterator rechercherCarte(const Carte &carte) const;
 };
 
 

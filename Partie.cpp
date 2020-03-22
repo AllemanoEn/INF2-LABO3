@@ -3,7 +3,7 @@
 #include "Affichage.h"
 #include "MeilleurJoueur.h"
 
-#include <ctime>
+
 #include <algorithm>
 #include <random>
 

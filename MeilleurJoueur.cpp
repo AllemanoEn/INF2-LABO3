@@ -5,7 +5,7 @@
 #include "MeilleurJoueur.h"
 #include "Parametre.h"
 
-Carte MeilleurJoueur::decideCarte(std::vector<bool> vFamilles) {
+Carte MeilleurJoueur::decideCarte(const std::vector<bool>& vFamilles) const {
     int iFamille;
     if(vCarteEnMain.empty()){
         // Choisir une famille au hasard
