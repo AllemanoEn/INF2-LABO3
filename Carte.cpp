@@ -3,30 +3,30 @@
 using namespace std;
 
 bool Carte::operator==(const Carte &c) const {
-    return (this->MEMBRE == c.MEMBRE && this->FAMILLE == c.FAMILLE);
-}
-
-
-void Carte::setMembre(unsigned short membre) {
-    MEMBRE = membre;
+    return (this->membre == c.membre && this->famille == c.famille);
 }
 
 bool Carte::operator<(const Carte &c) const {
-    if (this->FAMILLE < c.FAMILLE)
+    if (this->famille < c.famille)
         return true;
-    if (this->FAMILLE == c.FAMILLE)
-        return (this->MEMBRE < c.MEMBRE);
+    if (this->famille == c.famille)
+        return (this->membre < c.membre);
     return false;
 }
 
-ostream& operator<<(ostream& lhs, const Carte& rhs)
-{
-    lhs << rhs.FAMILLE << char(rhs.MEMBRE);
+ostream &operator<<(ostream &lhs, const Carte &rhs) {
+    lhs << rhs.famille << char(rhs.membre);
     return lhs;
 }
+
 unsigned short Carte::getFamille() const {
-    return FAMILLE;
+    return famille;
 }
+
 unsigned short Carte::getMembre() const {
-    return MEMBRE;
+    return membre;
+}
+
+void Carte::setMembre(unsigned short membre) {
+    this->membre = membre;
 }
