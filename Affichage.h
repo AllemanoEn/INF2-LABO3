@@ -7,7 +7,7 @@
 /**
  * Affiche le string de la constante MESSAGE_PARTIE de Parametre.h
  */
-const void afficherPartie();
+void afficherPartie();
 
 /**
  * Affiche l'état du trour:
@@ -19,7 +19,7 @@ const void afficherPartie();
  * @param vTasDePioche La pioche
  * @param AfficherTour décris plus haut
  */
-const void afficherTour(unsigned iNoTour, const std::vector<Joueur *> &vJoueurs, const std::vector<Carte> &vTasDePioche,
+void afficherTour(unsigned iNoTour, const std::vector<Joueur *> &vJoueurs, const std::vector<Carte> &vTasDePioche,
                         bool AfficherTour);
 
 /**
@@ -29,7 +29,7 @@ const void afficherTour(unsigned iNoTour, const std::vector<Joueur *> &vJoueurs,
  * @param vJoueurs la liste des joueurs
  * @param carteAEchanger la carte demandée
  */
-const void afficherDemandeDeCarte(const Joueur &j1, unsigned j2, const std::vector<Joueur *> &vJoueurs,
+void afficherDemandeDeCarte(const Joueur &j1, unsigned j2, const std::vector<Joueur *> &vJoueurs,
                                   const Carte &carteAEchanger);
 
 /**
@@ -37,7 +37,7 @@ const void afficherDemandeDeCarte(const Joueur &j1, unsigned j2, const std::vect
  * @param j2 le joueur qui ne possède pas la carte
  * @param vJoueurs la liste des joueurs
  */
-const void afficherPasDeCarte(unsigned j2, const std::vector<Joueur *> &vJoueurs);
+void afficherPasDeCarte(unsigned j2, const std::vector<Joueur *> &vJoueurs);
 
 /**
  * Annonce qu'un joueur à une carte et la donne à un autre joueur
@@ -45,24 +45,24 @@ const void afficherPasDeCarte(unsigned j2, const std::vector<Joueur *> &vJoueurs
  * @param j2 le joueur qui donne la carte
  * @param vJoueurs liste des joueurs
  */
-const void afficherALaCarte(const Joueur &j1, unsigned j2, const std::vector<Joueur *> &vJoueurs);
+void afficherALaCarte(const Joueur &j1, unsigned j2, const std::vector<Joueur *> &vJoueurs);
 
 /**
  * Affiche qu'un joueur pioche une carte
  * @param j1 le joueur qui pioche la carte
  * @param carte la carte piochée
  */
-const void afficherPiocher(Joueur *j1, const Carte &carte);
+void afficherPiocher(Joueur *j1, const Carte &carte);
 
 /**
  * Affiche que la partie est finie
  */
-const void afficherFinDePartie();
+void afficherFinDePartie();
 
 /**
  * Affiche le nombre de tours qui a été effectués afin de finir la partie
  * @param iNoTour le nombre de tours effectués
  */
-const void afficherNbTour(unsigned iNoTour);
+void afficherNbTour(unsigned iNoTour);
 
 #endif //INF2_LABO3_AFFICHAGE_H

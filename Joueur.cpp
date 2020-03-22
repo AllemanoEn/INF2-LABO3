@@ -10,7 +10,8 @@ Carte Joueur::decideCarte(const vector<bool>& vFamilles) const{
     int iFamille = (rand() % NOMBRE_FAMILLES) + 1;
 
     // Incrémente la famille jusqu'à trouver une famille qui n'est pas déjà complétée et dont il possède au moins une carte
-    while (vFamilles.at(iFamille - 1) || ((compteCartesFamille(iFamille) == 0) && !(vCarteEnMain.empty()))) {
+    while (vFamilles.at(static_cast<unsigned int>(iFamille - 1)) || ((compteCartesFamille(
+            static_cast<unsigned int>(iFamille)) == 0) && !(vCarteEnMain.empty()))) {
         iFamille = ((iFamille + 1) % NOMBRE_FAMILLES) + 1;
     }
 
@@ -18,10 +19,10 @@ Carte Joueur::decideCarte(const vector<bool>& vFamilles) const{
     unsigned int iMembre = rand() % CARTES_PAR_FAMILLE + 65;
 
     // Incrémente la carte jusqu'à trouver une carte qui n'est pas dans la main du joueur
-    Carte carteATester(iFamille, iMembre);
+    Carte carteATester(static_cast<unsigned short>(iFamille), static_cast<unsigned short>(iMembre));
     while (demanderCarte(carteATester)) {
         iMembre = (iMembre) % CARTES_PAR_FAMILLE + 65;
-        carteATester.setMembre(iMembre);
+        carteATester.setMembre(static_cast<unsigned short>(iMembre));
     }
     return carteATester;
 }
@@ -54,9 +55,9 @@ void echangerCarte(Joueur &j1, Joueur &j2, const Carte &carteAEchanger) {
 // insère une carte à sa place
 void Joueur::insererCarteEnMain(const Carte& carte) {
     bool inseree = false;
-    for (int i = 0; i < vCarteEnMain.size(); ++i) {
+    for (unsigned int i = 0; i < vCarteEnMain.size(); ++i) {
         if (carte < this->vCarteEnMain.at(i)) {
-            vCarteEnMain.insert(vCarteEnMain.begin() + i, carte);
+            vCarteEnMain.insert(vCarteEnMain.begin() + static_cast<int>(i), carte);
             inseree = true;
             break;
         }
@@ -77,12 +78,12 @@ void Joueur::detecterFamille(std::vector<bool> &vFamilles) {
     unsigned int iCpt, iPos = 0;
     for (unsigned short fam = 1; fam <= NOMBRE_FAMILLES; fam++) {
         iCpt = 0;
-        for (auto c = vCarteEnMain.begin() + iPos; c < vCarteEnMain.end(); c++, iPos++) {
+        for (auto c = vCarteEnMain.begin() + static_cast<int>(iPos); c < vCarteEnMain.end(); c++, iPos++) {
             if (c->getFamille() == fam) {
                 iCpt++;
                 if (iCpt == CARTES_PAR_FAMILLE) {
                     iPos -= (CARTES_PAR_FAMILLE - 1);
-                    auto pos = vCarteEnMain.begin() + iPos;
+                    auto pos = vCarteEnMain.begin() + static_cast<int>(iPos);
                     vFamilles.at(vCarteEnMain.at(iPos).getFamille() - 1) = true;
                     vFamillesSurTable.push_back(pos->getFamille());
                     vCarteEnMain.erase(pos, pos + CARTES_PAR_FAMILLE);

@@ -19,7 +19,7 @@ public:
      * @param nom nom du joueur
      * @param cartes vecteurs de cartes
      */
-    Joueur(std::string nom, std::vector<Carte> cartes) : strNom(nom), vCarteEnMain(cartes) {};
+    Joueur(std::string nom, std::vector<Carte> cartes) : vCarteEnMain(cartes),strNom(nom) {};
 
     /**
      * Prends deux joueurs en référence. La carte "carteAEchanger" va être insérée dans le vecteur
@@ -40,7 +40,7 @@ public:
      * @return la carte que le joueur veut demander.
      * @details Cette fonction choisis au hasard une famille
      * Incrémente la famille si celle choisie au hasard n'est pas présente dans la main du joueur.
-     * Si la main du joueur est vide, la famille est incrémentée jusqu'à trouer une famille qui n'est
+     * Si la main du joueur est vide, la famille est incrémentée jusqu'à rouer une famille qui n'est
      * pas déjà complétée.
      * Puis un membre de la famille est choisit au hasard.
      * Ce membre est incrémenté tant que la carte définie par le membre et la famille choisie est

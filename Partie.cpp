@@ -135,7 +135,7 @@ unsigned int Partie::joueurAleatoire(Joueur j) {
 vector<int> Partie::calculResultats() const{
     vector<int> vResultats;
     for(auto& joueur : vJoueurs){
-        vResultats.push_back(joueur->getVFamillesSurTable().size());
+        vResultats.push_back(static_cast<int>(joueur->getVFamillesSurTable().size()));
     }
     return vResultats;
 }
