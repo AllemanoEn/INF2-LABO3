@@ -19,30 +19,62 @@ public:
      * @param vJoueurs les joueurs de la partie
      * @param premierJoueur le premier joueur
      */
-    Partie(std::vector<Joueur*> vJoueurs , const unsigned premierJoueur);
+    Partie(std::vector<Joueur *> vJoueurs, const unsigned premierJoueur);
 
-    std::vector<Carte> slice(std::vector<Carte> const &v, int m, int n);
-
+    /**
+     * Fonction qui sert à faire jouer la partie
+     * @return le nombre de familles complétées par chaque joueur
+     */
     std::vector<int> jouerPartie();
+
+    /**
+     * Accesseur du nombre de tours effectués
+     * @return le nombre (unsigned int) de tours effectués
+     */
     unsigned int getiNoTour();
 
 private:
 
-    bool jouerTour(Joueur& j);
-    bool checkFinDePartie();
     unsigned premierJoueur;
-    std::vector<int> calculResultats() const;
-
-    /// \brief fonction qui retourne un joueur aléatoire qui n'est pas celui passé en paramètre
-    /// \param j joueur à éviter
-    /// \return un joueur aleatoire
-    unsigned joueurAleatoire(Joueur j);
-
+    unsigned int iNoTour;
     std::vector<Carte> vTasDePioche;
-    std::vector<Joueur*> vJoueurs;
+    std::vector<Joueur *> vJoueurs;
     std::vector<bool> vFamilles;
 
-    unsigned int iNoTour;
+    /**
+     * Fonction qui fait jouer un joueur lors d'un tour avec ses possibilités d'actions
+     * @param j le joueur qui doit jouer
+     * @return true si la partie est finie. Sinon faux
+     */
+    bool jouerTour(Joueur &j);
+
+    /**
+     * Vérifie si la partie est terminée (toutes les familles sont complétées
+     * @return true si toute les familles sont complétées. Sinon false.
+     */
+    bool checkFinDePartie();
+
+    /**
+     * Retourne le nombre de familles que chaque joueur ont complété dans un vecteur
+     * @return le nombre de familles que chaque joueur ont complété dans un vecteur
+     */
+    std::vector<int> calculResultats() const;
+
+    /**
+     * fonction qui retourne un joueur aléatoire qui n'est pas celui passé en paramètre
+     * @param j joueur à éviter
+     * @return un joueur aleatoire
+     */
+    unsigned joueurAleatoire(Joueur j);
+
+    /**
+     * 
+     * @param v
+     * @param m
+     * @param n
+     * @return
+     */
+    std::vector<Carte> slice(std::vector<Carte> const &v, int m, int n);
 
 };
 

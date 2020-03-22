@@ -2,6 +2,7 @@
 #include "Parametre.h"
 #include "Affichage.h"
 #include "MeilleurJoueur.h"
+#include <ctime>
 
 
 #include <algorithm>
