@@ -17,7 +17,7 @@
 
 using namespace std;
 
-Partie::Partie(std::vector<Joueur*> joueurs, const unsigned premierJoueur) : vJoueurs(joueurs) , premierJoueur(premierJoueur) {
+Partie::Partie(std::vector<Joueur*> joueurs, const unsigned premierJoueur) : premierJoueur(premierJoueur),vJoueurs(joueurs) {
 
 
     // Creation du tas de pioche
