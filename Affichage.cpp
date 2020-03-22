@@ -1,4 +1,10 @@
-
+/// \file Affichage.cpp
+/// \authors Enzo Allemano, David Pellissier, Michael Ruckstuhl
+/// \date 22.03.2020
+///
+/// Remarque :
+///
+/// Compilateur : MinGw-g++ 6.3.0
 
 #include "Affichage.h"
 #include <iostream>
@@ -15,8 +21,8 @@ void afficherTour(unsigned iNoTour, const std::vector<Joueur *> &vJoueurs, const
         if (AfficherTour)
             cout << MESSAGE_TOUR_DEBUT << iNoTour << MESSAGE_TOUR_FIN << endl;
 
-        for (size_t i = 0; i < vJoueurs.size(); ++i) {
-            cout << vJoueurs.at(i)->getStrNom() << TABULATEUR << SEPARATEUR << *vJoueurs.at(i) << endl;
+        for (auto vJoueur : vJoueurs) {
+            cout << vJoueur->getStrNom() << TABULATEUR << SEPARATEUR << *vJoueur << endl;
         }
         cout << MESSAGE_PIOCHE << TABULATEUR << SEPARATEUR;
         for (auto carteEnMain : vTasDePioche) {
