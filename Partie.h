@@ -10,7 +10,7 @@
 
 class Partie {
 public:
-    Partie(const unsigned premierJoueur);
+    Partie(std::vector<Joueur*> vJoueurs , const unsigned premierJoueur);
 
     std::vector<Carte> slice(std::vector<Carte> const &v, int m, int n);
 
@@ -18,7 +18,8 @@ public:
     unsigned int getiNoTour();
 
 private:
-    bool jouerTour(Joueur& j);
+    template <typename T>
+    bool jouerTour(T& j);
     bool checkFinDePartie();
     unsigned premierJoueur;
     std::vector<int> calculResultats() const;
@@ -29,7 +30,7 @@ private:
     unsigned joueurAleatoire(Joueur j);
 
     std::vector<Carte> vTasDePioche;
-    std::vector<Joueur> vJoueurs;
+    std::vector<Joueur*> vJoueurs;
     std::vector<bool> vFamilles;
 
     unsigned int iNoTour;

@@ -99,14 +99,6 @@ void Joueur::detecterFamille(std::vector<bool>& vFamilles) {
 }
 
 void Joueur::piocher(std::vector<Carte>& vTasDePioche) {
-    //JE MODIFIE POUR FAIRE COMME DANS L'EXEMPLE DE LA DONNEE
-    //MICHAEL
-    //Ancien code:
-    /*
-    this->insererCarteEnMain(vTasDePioche.at(0));
-    vTasDePioche.erase(vTasDePioche.begin());
-     */
-    //Nouveau code:
     afficherPiocher(this,vTasDePioche.at(vTasDePioche.size()-1));
     this->insererCarteEnMain(vTasDePioche.at(vTasDePioche.size()-1));
     vTasDePioche.pop_back();
@@ -142,6 +134,10 @@ bool Joueur::demanderCarte(const Carte &carte) {
     return !(rechercherCarte(carte) == vCarteEnMain.end());
 }
 
+void Joueur::setVFamillesSurTable(const vector<unsigned short> &vFamillesSurTable) {
+    Joueur::vFamillesSurTable = vFamillesSurTable;
+}
+
 unsigned Joueur::compteCartesFamille(unsigned iFamille) const{
     unsigned count = 0;
     for(auto carte : vCarteEnMain){
@@ -149,4 +145,8 @@ unsigned Joueur::compteCartesFamille(unsigned iFamille) const{
             count++;
     }
     return count;
+}
+
+void Joueur::setVCarteEnMain(const vector<Carte> &vCarteEnMain) {
+    Joueur::vCarteEnMain = vCarteEnMain;
 }

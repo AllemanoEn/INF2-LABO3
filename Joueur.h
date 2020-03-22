@@ -12,7 +12,10 @@ public:
     Joueur(std::string nom, std::vector<Carte> cartes) : strNom(nom), vCarteEnMain(cartes) {};
 
     friend void echangerCarte(Joueur& j1, Joueur& j2, const Carte& carteAEchanger);
-    Carte decideCarte(std::vector<bool> vFamilles) ;
+
+    void setVCarteEnMain(const std::vector<Carte> &vCarteEnMain);
+
+    virtual Carte decideCarte(std::vector<bool> vFamilles) ;
     bool demanderCarte(const Carte& carte) ;
 
     unsigned compteCartesFamille(unsigned iFamille) const;
@@ -36,6 +39,8 @@ public:
     friend std::ostream &operator<<(std::ostream &lhs, const Joueur &rhs);
 
     const std::vector<unsigned short> &getVFamillesSurTable() const;
+
+    void setVFamillesSurTable(const std::vector<unsigned short> &vFamillesSurTable);
 
 private:
     const std::string strNom;

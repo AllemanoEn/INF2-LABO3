@@ -1,11 +1,10 @@
 
 #include "Partie.h"
+#include "MeilleurJoueur.h"
 #include <ctime>
 using namespace std;
 
 int main() {
-    Partie p(1);
-    p.jouerPartie();
 
     srand((unsigned) time(NULL));
     const int NBSERIEPARTIE = 5;
@@ -13,14 +12,26 @@ int main() {
  // CAS 1
     const int NBPARTIES = 100;
     vector<int> vTotaux1(NOMBRE_JOUEURS);
+    MeilleurJoueur j1 (NOM_JOUEURS[0], {});
+    Joueur  j2 (NOM_JOUEURS[1], {}),
+            j3 (NOM_JOUEURS[2], {}),
+            j4 (NOM_JOUEURS[3], {});
+    vector<Joueur*> vJoueurs = {  &j1,
+                                  &j2,
+                                  &j3,
+                                  &j4 };
+
     for (int j = 0; j < NBSERIEPARTIE; ++j) {
         for(int partie = 1; partie <= NBPARTIES; ++partie){
-            Partie p1(1);
+            Partie p1(vJoueurs,1);
             vector<int> vResultats = p1.jouerPartie();
 
+            // Ajout des résultats et reset des joueurs
             for(int i = 0; i < NOMBRE_JOUEURS; ++i){
                 vTotaux1.at(i) += vResultats.at(i);
             }
+
+
         }
     }
     cout << "Resultats cas 1 (sur " << NBSERIEPARTIE << " series de " << NBPARTIES << " parties):" << endl;
@@ -33,7 +44,7 @@ int main() {
     vector<int> vTotaux2(NOMBRE_JOUEURS);
     for (int k = 0; k < NBSERIEPARTIE; ++k) {
         for(int partie = 1; partie <= NBPARTIES2; ++partie){
-            Partie p2(partie%NOMBRE_JOUEURS);
+            Partie p2(vJoueurs, partie%NOMBRE_JOUEURS);
             vector<int> vResultats2 = p2.jouerPartie();
 
             for(int i = 0; i < NOMBRE_JOUEURS; ++i){
@@ -47,5 +58,6 @@ int main() {
     }
 
 
+    vJoueurs.at(0)->setVFamillesSurTable(vector<unsigned short>());
     return 0;
 }

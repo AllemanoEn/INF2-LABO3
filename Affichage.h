@@ -5,10 +5,10 @@
 #include "Joueur.h"
 
 const void afficherPartie();
-const void afficherTour(unsigned iNoTour,const std::vector<Joueur>& vJoueurs, const std::vector<Carte>& vTasDePioche, bool AfficherTour);
-const void afficherDemandeDeCarte(const Joueur& j1, unsigned j2, const std::vector<Joueur>& vJoueurs, const Carte& carteAEchanger);
-const void afficherPasDeCarte(unsigned j2, const std::vector<Joueur>& vJoueurs);
-const void afficherALaCarte(const Joueur& j1, unsigned j2, const std::vector<Joueur>& vJoueurs);
+const void afficherTour(unsigned iNoTour,const std::vector<Joueur*>& vJoueurs, const std::vector<Carte>& vTasDePioche, bool AfficherTour);
+const void afficherDemandeDeCarte(const Joueur& j1, unsigned j2, const std::vector<Joueur*>& vJoueurs, const Carte& carteAEchanger);
+const void afficherPasDeCarte(unsigned j2, const std::vector<Joueur*>& vJoueurs);
+const void afficherALaCarte(const Joueur& j1, unsigned j2, const std::vector<Joueur*>& vJoueurs);
 const void afficherPiocher(Joueur *j1, const Carte& carte);
 const void afficherFinDePartie();
 const void afficherNbTour(unsigned iNoTour);
