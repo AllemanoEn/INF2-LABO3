@@ -4,8 +4,10 @@
 using namespace std;
 
 int main() {
+    Partie p(1);
+    p.jouerPartie();
 
-    srand((unsigned) time(NULL));
+/*    srand((unsigned) time(NULL));
 
  // CAS 1
     const int NBPARTIES = 100;
@@ -37,7 +39,7 @@ int main() {
     cout << endl << "Resultats cas 2 (sur " << NBPARTIES << " parties):" << endl;
     for(int i = 0; i < NOMBRE_JOUEURS; ++i){
         cout << "Joueur " << i+1 << ": " << (float(vTotaux2.at(i))/(NBPARTIES2*NOMBRE_FAMILLES)) * 100 << "%" << endl;
-    }
+    }*/
 
 
     return 0;

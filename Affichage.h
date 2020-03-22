@@ -4,6 +4,7 @@
 #include "Parametre.h"
 #include "Joueur.h"
 
+const void afficherPartie();
 const void afficherTour(unsigned iNoTour,const std::vector<Joueur>& vJoueurs, const std::vector<Carte>& vTasDePioche);
 const void afficherDemandeDeCarte(const Joueur& j1, unsigned j2, const std::vector<Joueur>& vJoueurs, const Carte& carteAEchanger);
 const void afficherPasDeCarte(unsigned j2, const std::vector<Joueur>& vJoueurs);
