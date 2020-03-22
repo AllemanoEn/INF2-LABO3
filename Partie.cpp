@@ -85,10 +85,11 @@ vector<int> Partie::jouerPartie() {
     afficherPartie();
     bool finDePartie = false;
     do {
-        afficherTour(iNoTour, vJoueurs, vTasDePioche);
+        afficherTour(iNoTour, vJoueurs, vTasDePioche, true);
         for (auto &j : vJoueurs) {
             finDePartie = jouerTour(j);
             if(finDePartie){
+                afficherTour(iNoTour, vJoueurs, vTasDePioche, false);
                 afficherFinDePartie();
                 afficherNbTour(iNoTour);
                 return calculResultats();
